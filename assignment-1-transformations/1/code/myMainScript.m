@@ -1,37 +1,53 @@
 %% MyMainScript
 
 tic;
+%% Assignment1, Q1 Main Script
+%  CS 663: Digital Image Processing, IIT Bombay (Autumn 2020)
+%  Aman Kansal, Ansh Khurana, Kushagra Juneja  
+clc; clear all; close all;
+warning('off', 'all');
 
 %% Code for Q1.a
+%Image Shrinking.
 
 % Original circles image
-figure;
-im1 = imread("../data/circles_concentric.png");
-hold on;
-title("Original image");
-imshow(im1);
 
-toc;
+im1 = imread("../data/circles_concentric.png");
+% figure;
+% hold on;
+% title("Original circles image");
+% daspect ([1 1 1]);
+% imshow(im1);
+displayLockedAspectRatio(im1, "Original circles image");
+% toc;
 
 % Subsampled by 2 circles image
-figure;
 circles2 = myShrinkImageByFactorD(im1, 2);
-hold on;
-title("Circles image subsampled by 2");
-imshow(circles2);
-
-toc;
+% figure;
+displayLockedAspectRatio(circles2, "Circles image subsampled by 2");
+% 
+% hold on;
+% title("Circles image subsampled by 2");
+% daspect ([1 1 1]);
+% imshow(circles2);
+% 
+% toc;
 
 % Subsampled by 3 circles image
-figure;
 circles3 = myShrinkImageByFactorD(im1, 3);
-hold on;
-title("Circles image subsampled by 3");
-imshow(circles3);
+displayLockedAspectRatio(circles3, "Circles image subsampled by 3");
+% figure;
+% 
+% hold on;
+% title("Circles image subsampled by 3");
+% daspect ([1 1 1]);
+% imshow(circles3);
 
-toc;
+% toc;
 
 %% Code for Q1.b,c
+% Image Enlargement.
+
 % Original barbara image
 figure;
 im2 = imread("../data/barbaraSmall.png");
