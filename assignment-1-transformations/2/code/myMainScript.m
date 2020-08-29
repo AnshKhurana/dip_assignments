@@ -6,22 +6,15 @@ tic;
 % Statue image
 figure;
 im2 = imread("../data/statue.png");
-hold on;
 title("Original image");
 imshow(im2);
 
-toc;
-
 figure;
 [mask, maskedImage] = myForegroundMask(im2);
-hold on;
 title("Mask");
 imshow(mask);
 
-toc;
-
 figure;
-hold on;
 title("Masked image");
 imshow(maskedImage);
 
@@ -31,11 +24,8 @@ toc;
 % Barbara image
 figure;
 im2 = imread("../data/barbara.png");
-hold on;
 title("Original image");
 imshow(im2);
-
-toc;
 
 % Linear Contrast Stretching
 figure;
@@ -44,4 +34,3 @@ title("Linear Contrast Stretching");
 imshow(contrastBarbara);
 
 toc;
-%}
