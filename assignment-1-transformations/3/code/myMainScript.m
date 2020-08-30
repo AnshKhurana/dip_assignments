@@ -12,6 +12,8 @@ clc; clear all; close all;
 % alpha = 0.5, a = median_intensity
 img = imread('../data/statue.png');
 displayImage(img, 'original image');
+he_img = myHE(img);
+displayImage(he_img, 'histogram equalized image');
 % code for median based intensity transformation
 
 counts = imhist(img);
@@ -42,8 +44,7 @@ for i = 1:256
     end
 end
 
-assignin('base','t_cdf', transformed_cdf);
-
+% assignin('base','t_cdf', transformed_cdf);
 transformed_cdf = uint8(255*transformed_cdf);
 result = transformed_cdf(img+1);
 displayImage(result, 'median Intensity transform');

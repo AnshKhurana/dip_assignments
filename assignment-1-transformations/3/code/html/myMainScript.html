@@ -6,7 +6,7 @@
    <!--
 This HTML was auto-generated from MATLAB code.
 To make changes, update the MATLAB code and republish this document.
-      --><title>myMainScript</title><meta name="generator" content="MATLAB 9.6"><link rel="schema.DC" href="http://purl.org/dc/elements/1.1/"><meta name="DC.date" content="2020-08-29"><meta name="DC.source" content="myMainScript.m"><style type="text/css">
+      --><title>myMainScript</title><meta name="generator" content="MATLAB 9.6"><link rel="schema.DC" href="http://purl.org/dc/elements/1.1/"><meta name="DC.date" content="2020-08-30"><meta name="DC.source" content="myMainScript.m"><style type="text/css">
 html,body,div,span,applet,object,iframe,h1,h2,h3,h4,h5,h6,p,blockquote,pre,a,abbr,acronym,address,big,cite,code,del,dfn,em,font,img,ins,kbd,q,s,samp,small,strike,strong,sub,sup,tt,var,b,u,i,center,dl,dt,dd,ol,ul,li,fieldset,form,label,legend,table,caption,tbody,tfoot,thead,tr,th,td{margin:0;padding:0;border:0;outline:0;font-size:100%;vertical-align:baseline;background:transparent}body{line-height:1}ol,ul{list-style:none}blockquote,q{quotes:none}blockquote:before,blockquote:after,q:before,q:after{content:'';content:none}:focus{outine:0}ins{text-decoration:none}del{text-decoration:line-through}table{border-collapse:collapse;border-spacing:0}
 
 html { min-height:100%; margin-bottom:1px; }
@@ -71,6 +71,8 @@ table td { padding:7px 5px; text-align:left; vertical-align:top; border:1px soli
 Aman Kansal, Ansh Khurana, Kushagra Juneja</pre><pre class="codeinput">clc; clear <span class="string">all</span>; close <span class="string">all</span>;
 </pre><h2 id="4">3d.</h2><p>following notation in written answer, for 0&lt;h(I)&lt;a -&gt; h(T(I)) = p1 and h(T(I)) = p2 otherwise. alpha = 0.5, a = median_intensity</p><pre class="codeinput">img = imread(<span class="string">'../data/statue.png'</span>);
 displayImage(img, <span class="string">'original image'</span>);
+he_img = myHE(img);
+displayImage(he_img, <span class="string">'histogram equalized image'</span>);
 <span class="comment">% code for median based intensity transformation</span>
 
 counts = imhist(img);
@@ -101,15 +103,14 @@ transformed_cdf = zeros(1,256);
     <span class="keyword">end</span>
 <span class="keyword">end</span>
 
-assignin(<span class="string">'base'</span>,<span class="string">'t_cdf'</span>, transformed_cdf);
-
+<span class="comment">% assignin('base','t_cdf', transformed_cdf);</span>
 transformed_cdf = uint8(255*transformed_cdf);
 result = transformed_cdf(img+1);
 displayImage(result, <span class="string">'median Intensity transform'</span>);
 
 toc;
-</pre><pre class="codeoutput">Elapsed time is 0.824681 seconds.
-</pre><img vspace="5" hspace="5" src="myMainScript_01.png" alt=""> <img vspace="5" hspace="5" src="myMainScript_02.png" alt=""> <p class="footer"><br><a href="https://www.mathworks.com/products/matlab/">Published with MATLAB&reg; R2019a</a><br></p></div><!--
+</pre><pre class="codeoutput">Elapsed time is 1.091177 seconds.
+</pre><img vspace="5" hspace="5" src="myMainScript_01.png" alt=""> <img vspace="5" hspace="5" src="myMainScript_02.png" alt=""> <img vspace="5" hspace="5" src="myMainScript_03.png" alt=""> <p class="footer"><br><a href="https://www.mathworks.com/products/matlab/">Published with MATLAB&reg; R2019a</a><br></p></div><!--
 ##### SOURCE BEGIN #####
 %% MyMainScript
 
@@ -125,6 +126,8 @@ clc; clear all; close all;
 % alpha = 0.5, a = median_intensity
 img = imread('../data/statue.png');
 displayImage(img, 'original image');
+he_img = myHE(img);
+displayImage(he_img, 'histogram equalized image');
 % code for median based intensity transformation
 
 counts = imhist(img);
@@ -155,8 +158,7 @@ for i = 1:256
     end
 end
 
-assignin('base','t_cdf', transformed_cdf);
-
+% assignin('base','t_cdf', transformed_cdf);
 transformed_cdf = uint8(255*transformed_cdf);
 result = transformed_cdf(img+1);
 displayImage(result, 'median Intensity transform');
