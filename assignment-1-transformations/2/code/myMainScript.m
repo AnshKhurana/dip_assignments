@@ -133,6 +133,26 @@ title("statue.png (foreground) - histogram equalized");
 hold on;
 imshow(he_image7);
 
+
+
+%% 2d.
+input_image = imread('../data/retina.png');
+reference_image = imread('../data/retinaRef.png');
+% Original image
+displayImage(input_image, 'original image');
+% Reference image
+displayImage(reference_image, 'reference image');
+% Histogram equalized image
+equalized_image = zeros(size(input_image));
+equalized_image(:,:,1) = myHE(input_image(:,:,1));
+equalized_image(:,:,2) = myHE(input_image(:,:,2));
+equalized_image(:,:,3) = myHE(input_image(:,:,3));
+displayImage(equalized_image, 'histogram equalized image');
+% Histogram matched image
+matched_img = myHM(input_image, reference_image);
+displayImage(matched_img,  'histogram matched image');
+toc;
+
 %% Code for Q2.e - Barbara
 image1 = imread('../data/barbara.png');
 image2 = imread('../data/TEM.png');
@@ -294,20 +314,4 @@ clahe_image6_small_h = myCLAHE(image6,clahe_window,small_clahe_threshold);
 title("chestXray.png - CLAHE small threshold");
 hold on;
 imshow(clahe_image6_small_h);
-
-
-%% 2d.
-input_image = imread('../data/retina.png');
-reference_image = imread('../data/retinaRef.png');
-% Original image
-displayImage(input_image, 'original image');
-% Reference image
-displayImage(reference_image, 'reference image');
-% Histogram equalized image
-% equalized_image = get_equalized_image()
-% image(cdf_image);
-% Histogram matched image
-matched_img = myHM(input_image, reference_image);
-displayImage(matched_img,  'HM matched image');
-toc;
 
