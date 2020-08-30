@@ -1,27 +1,25 @@
 %% MyMainScript
-
 tic;
+%% Your code here
+%% Q2 Main Script
+%  CS 663: Digital Image Processing, IIT Bombay (Autumn 2020)
+%  Aman Kansal, Ansh Khurana, Kushagra Juneja
+clc; clear all; close all;
+warning('off', 'all');
 
 %% Code for Q2.a
 % Statue image
 figure;
 im2 = imread("../data/statue.png");
-hold on;
 title("Original image");
 imshow(im2);
 
-toc;
-
 figure;
 [mask, maskedImage] = myForegroundMask(im2);
-hold on;
 title("Mask");
 imshow(mask);
 
-toc;
-
 figure;
-hold on;
 title("Masked image");
 imshow(maskedImage);
 
@@ -31,11 +29,8 @@ toc;
 % Barbara image
 figure;
 im2 = imread("../data/barbara.png");
-hold on;
 title("Original image");
 imshow(im2);
-
-toc;
 
 % Linear Contrast Stretching
 figure;
@@ -44,7 +39,6 @@ title("Linear Contrast Stretching");
 imshow(contrastBarbara);
 
 toc;
-%}
 
 %% Code for Q2. c
 
@@ -302,8 +296,18 @@ hold on;
 imshow(clahe_image6_small_h);
 
 
-
-
-
-
+%% 2d.
+input_image = imread('../data/retina.png');
+reference_image = imread('../data/retinaRef.png');
+% Original image
+displayImage(input_image, 'original image');
+% Reference image
+displayImage(reference_image, 'reference image');
+% Histogram equalized image
+% equalized_image = get_equalized_image()
+% image(cdf_image);
+% Histogram matched image
+matched_img = myHM(input_image, reference_image);
+displayImage(matched_img,  'HM matched image');
+toc;
 
