@@ -6,7 +6,7 @@
    <!--
 This HTML was auto-generated from MATLAB code.
 To make changes, update the MATLAB code and republish this document.
-      --><title>myMainScript</title><meta name="generator" content="MATLAB 9.6"><link rel="schema.DC" href="http://purl.org/dc/elements/1.1/"><meta name="DC.date" content="2020-08-30"><meta name="DC.source" content="myMainScript.m"><style type="text/css">
+      --><title>myMainScript</title><meta name="generator" content="MATLAB 9.6"><link rel="schema.DC" href="http://purl.org/dc/elements/1.1/"><meta name="DC.date" content="2020-08-31"><meta name="DC.source" content="myMainScript.m"><style type="text/css">
 html,body,div,span,applet,object,iframe,h1,h2,h3,h4,h5,h6,p,blockquote,pre,a,abbr,acronym,address,big,cite,code,del,dfn,em,font,img,ins,kbd,q,s,samp,small,strike,strong,sub,sup,tt,var,b,u,i,center,dl,dt,dd,ol,ul,li,fieldset,form,label,legend,table,caption,tbody,tfoot,thead,tr,th,td{margin:0;padding:0;border:0;outline:0;font-size:100%;vertical-align:baseline;background:transparent}body{line-height:1}ol,ul{list-style:none}blockquote,q{quotes:none}blockquote:before,blockquote:after,q:before,q:after{content:'';content:none}:focus{outine:0}ins{text-decoration:none}del{text-decoration:line-through}table{border-collapse:collapse;border-spacing:0}
 
 html { min-height:100%; margin-bottom:1px; }
@@ -66,40 +66,45 @@ table td { padding:7px 5px; text-align:left; vertical-align:top; border:1px soli
 
 
 
-  </style></head><body><div class="content"><h2>Contents</h2><div><ul><li><a href="#1">MyMainScript</a></li><li><a href="#2">Your code here</a></li><li><a href="#3">Q2 Main Script</a></li><li><a href="#4">Code for Q2.a</a></li><li><a href="#5">Code for Q2.b</a></li><li><a href="#6">Code for Q2. c</a></li><li><a href="#7">2d.</a></li><li><a href="#8">Code for Q2.e - Barbara</a></li><li><a href="#9">Code for Q2.e - TEM</a></li><li><a href="#10">Code for Q2.e - canyon</a></li><li><a href="#11">Code for Q2.e - chestXray</a></li></ul></div><h2 id="1">MyMainScript</h2><pre class="codeinput">tic;
-</pre><h2 id="2">Your code here</h2><h2 id="3">Q2 Main Script</h2><pre>CS 663: Digital Image Processing, IIT Bombay (Autumn 2020)
+  </style></head><body><div class="content"><h2>Contents</h2><div><ul><li><a href="#1">MyMainScript</a></li><li><a href="#2">Your code here</a></li><li><a href="#3">Assignment 1</a></li><li><a href="#4">Q2 Main Script</a></li><li><a href="#5">Code for Q2.a</a></li><li><a href="#6">Code for Q2.b</a></li><li><a href="#7">Code for Q2. c</a></li><li><a href="#8">2d.</a></li><li><a href="#9">Code for Q2.e - Barbara</a></li><li><a href="#10">Code for Q2.e - TEM</a></li><li><a href="#11">Code for Q2.e - canyon</a></li><li><a href="#12">Code for Q2.e - chestXray</a></li></ul></div><h2 id="1">MyMainScript</h2><pre class="codeinput">tic;
+</pre><h2 id="2">Your code here</h2><h2 id="3">Assignment 1</h2><pre>CS 663: Digital Image Processing, IIT Bombay (Autumn 2020)
 Aman Kansal, Ansh Khurana, Kushagra Juneja</pre><pre class="codeinput">clc; clear <span class="string">all</span>; close <span class="string">all</span>;
 warning(<span class="string">'off'</span>, <span class="string">'all'</span>);
-</pre><h2 id="4">Code for Q2.a</h2><p>Statue image</p><pre class="codeinput">figure;
+</pre><h2 id="4">Q2 Main Script</h2><p>Individual functionalites have been implemented in 'getCDFTransform', 'myCLAHE', 'myForegroundMask', 'myHM', 'myHM' and 'myLinearContrastStretching'</p><h2 id="5">Code for Q2.a</h2><p>Statue image</p><pre class="codeinput">figure;
 im2 = imread(<span class="string">"../data/statue.png"</span>);
 title(<span class="string">"Original image"</span>);
+hold <span class="string">on</span>;
 imshow(im2);
 
 figure;
 [mask, maskedImage] = myForegroundMask(im2);
 title(<span class="string">"Mask"</span>);
+hold <span class="string">on</span>;
 imshow(mask);
 
 figure;
 title(<span class="string">"Masked image"</span>);
+hold <span class="string">on</span>;
 imshow(maskedImage);
 
 toc;
-</pre><pre class="codeoutput">Elapsed time is 1.653268 seconds.
-</pre><img vspace="5" hspace="5" src="myMainScript_01.png" alt=""> <img vspace="5" hspace="5" src="myMainScript_02.png" alt=""> <img vspace="5" hspace="5" src="myMainScript_03.png" alt=""> <h2 id="5">Code for Q2.b</h2><p>Barbara image</p><pre class="codeinput">figure;
+</pre><pre class="codeoutput">Elapsed time is 1.373396 seconds.
+</pre><img vspace="5" hspace="5" src="myMainScript_01.png" alt=""> <img vspace="5" hspace="5" src="myMainScript_02.png" alt=""> <img vspace="5" hspace="5" src="myMainScript_03.png" alt=""> <h2 id="6">Code for Q2.b</h2><p>Barbara image</p><pre class="codeinput">figure;
 im2 = imread(<span class="string">"../data/barbara.png"</span>);
 title(<span class="string">"Original image"</span>);
+hold <span class="string">on</span>;
 imshow(im2);
 
 <span class="comment">% Linear Contrast Stretching</span>
 figure;
-contrastBarbara = uint8(myLinearContrastStretching(im2)) ;
+contrastBarbara = uint8(myLinearContrastStretching(im2));
 title(<span class="string">"Linear Contrast Stretching"</span>);
+hold <span class="string">on</span>;
 imshow(contrastBarbara);
 
 toc;
-</pre><pre class="codeoutput">Elapsed time is 2.901477 seconds.
-</pre><img vspace="5" hspace="5" src="myMainScript_04.png" alt=""> <img vspace="5" hspace="5" src="myMainScript_05.png" alt=""> <h2 id="6">Code for Q2. c</h2><pre class="codeinput">image1 = imread(<span class="string">'../data/barbara.png'</span>);
+</pre><pre class="codeoutput">Elapsed time is 2.729647 seconds.
+</pre><img vspace="5" hspace="5" src="myMainScript_04.png" alt=""> <img vspace="5" hspace="5" src="myMainScript_05.png" alt=""> <h2 id="7">Code for Q2. c</h2><pre class="codeinput">image1 = imread(<span class="string">'../data/barbara.png'</span>);
 image2 = imread(<span class="string">'../data/TEM.png'</span>);
 image3 = imread(<span class="string">'../data/canyon.png'</span>);
 image5 = imread(<span class="string">'../data/church.png'</span>);
@@ -126,7 +131,7 @@ hold <span class="string">on</span>;
 imshow(image2);
 
 figure;
-title(<span class="string">"TEm.png - histogram equalized"</span>);
+title(<span class="string">"TEM.png - histogram equalized"</span>);
 hold <span class="string">on</span>;
 imshow(he_image2);
 
@@ -173,7 +178,7 @@ hold <span class="string">on</span>;
 imshow(image6);
 
 figure;
-title(<span class="string">"chestXray - original"</span>);
+title(<span class="string">"chestXray - histogram equalized"</span>);
 hold <span class="string">on</span>;
 imshow(he_image6);
 
@@ -189,7 +194,7 @@ figure;
 title(<span class="string">"statue.png (foreground) - histogram equalized"</span>);
 hold <span class="string">on</span>;
 imshow(he_image7);
-</pre><img vspace="5" hspace="5" src="myMainScript_06.png" alt=""> <img vspace="5" hspace="5" src="myMainScript_07.png" alt=""> <img vspace="5" hspace="5" src="myMainScript_08.png" alt=""> <img vspace="5" hspace="5" src="myMainScript_09.png" alt=""> <img vspace="5" hspace="5" src="myMainScript_10.png" alt=""> <img vspace="5" hspace="5" src="myMainScript_11.png" alt=""> <img vspace="5" hspace="5" src="myMainScript_12.png" alt=""> <img vspace="5" hspace="5" src="myMainScript_13.png" alt=""> <img vspace="5" hspace="5" src="myMainScript_14.png" alt=""> <img vspace="5" hspace="5" src="myMainScript_15.png" alt=""> <img vspace="5" hspace="5" src="myMainScript_16.png" alt=""> <img vspace="5" hspace="5" src="myMainScript_17.png" alt=""> <img vspace="5" hspace="5" src="myMainScript_18.png" alt=""> <h2 id="7">2d.</h2><pre class="codeinput">input_image = imread(<span class="string">'../data/retina.png'</span>);
+</pre><img vspace="5" hspace="5" src="myMainScript_06.png" alt=""> <img vspace="5" hspace="5" src="myMainScript_07.png" alt=""> <img vspace="5" hspace="5" src="myMainScript_08.png" alt=""> <img vspace="5" hspace="5" src="myMainScript_09.png" alt=""> <img vspace="5" hspace="5" src="myMainScript_10.png" alt=""> <img vspace="5" hspace="5" src="myMainScript_11.png" alt=""> <img vspace="5" hspace="5" src="myMainScript_12.png" alt=""> <img vspace="5" hspace="5" src="myMainScript_13.png" alt=""> <img vspace="5" hspace="5" src="myMainScript_14.png" alt=""> <img vspace="5" hspace="5" src="myMainScript_15.png" alt=""> <img vspace="5" hspace="5" src="myMainScript_16.png" alt=""> <img vspace="5" hspace="5" src="myMainScript_17.png" alt=""> <img vspace="5" hspace="5" src="myMainScript_18.png" alt=""> <h2 id="8">2d.</h2><pre class="codeinput">input_image = imread(<span class="string">'../data/retina.png'</span>);
 reference_image = imread(<span class="string">'../data/retinaRef.png'</span>);
 <span class="comment">% Original image</span>
 displayImage(input_image, <span class="string">'original image'</span>);
@@ -205,8 +210,8 @@ displayImage(equalized_image, <span class="string">'histogram equalized image'</
 matched_img = myHM(input_image, reference_image);
 displayImage(matched_img,  <span class="string">'histogram matched image'</span>);
 toc;
-</pre><pre class="codeoutput">Elapsed time is 9.881642 seconds.
-</pre><img vspace="5" hspace="5" src="myMainScript_19.png" alt=""> <img vspace="5" hspace="5" src="myMainScript_20.png" alt=""> <img vspace="5" hspace="5" src="myMainScript_21.png" alt=""> <img vspace="5" hspace="5" src="myMainScript_22.png" alt=""> <h2 id="8">Code for Q2.e - Barbara</h2><pre class="codeinput">image1 = imread(<span class="string">'../data/barbara.png'</span>);
+</pre><pre class="codeoutput">Elapsed time is 10.124224 seconds.
+</pre><img vspace="5" hspace="5" src="myMainScript_19.png" alt=""> <img vspace="5" hspace="5" src="myMainScript_20.png" alt=""> <img vspace="5" hspace="5" src="myMainScript_21.png" alt=""> <img vspace="5" hspace="5" src="myMainScript_22.png" alt=""> <h2 id="9">Code for Q2.e - Barbara</h2><pre class="codeinput">image1 = imread(<span class="string">'../data/barbara.png'</span>);
 image2 = imread(<span class="string">'../data/TEM.png'</span>);
 image3 = imread(<span class="string">'../data/canyon.png'</span>);
 image6 = imread(<span class="string">'../data/chestXray.png'</span>);
@@ -270,7 +275,7 @@ h =
 
     71
 
-</pre><img vspace="5" hspace="5" src="myMainScript_23.png" alt=""> <img vspace="5" hspace="5" src="myMainScript_24.png" alt=""> <img vspace="5" hspace="5" src="myMainScript_25.png" alt=""> <img vspace="5" hspace="5" src="myMainScript_26.png" alt=""> <img vspace="5" hspace="5" src="myMainScript_27.png" alt=""> <img vspace="5" hspace="5" src="myMainScript_28.png" alt=""> <h2 id="9">Code for Q2.e - TEM</h2><pre class="codeinput"><span class="comment">%CLAHE Analysis for TEM.png</span>
+</pre><img vspace="5" hspace="5" src="myMainScript_23.png" alt=""> <img vspace="5" hspace="5" src="myMainScript_24.png" alt=""> <img vspace="5" hspace="5" src="myMainScript_25.png" alt=""> <img vspace="5" hspace="5" src="myMainScript_26.png" alt=""> <img vspace="5" hspace="5" src="myMainScript_27.png" alt=""> <h2 id="10">Code for Q2.e - TEM</h2><pre class="codeinput"><span class="comment">%CLAHE Analysis for TEM.png</span>
 figure;
 hold <span class="string">on</span>;
 clahe_image2 = myCLAHE(image2,clahe_window,clahe_threshold);
@@ -323,7 +328,7 @@ h =
 
     71
 
-</pre><img vspace="5" hspace="5" src="myMainScript_29.png" alt=""> <img vspace="5" hspace="5" src="myMainScript_30.png" alt=""> <img vspace="5" hspace="5" src="myMainScript_31.png" alt=""> <img vspace="5" hspace="5" src="myMainScript_32.png" alt=""> <img vspace="5" hspace="5" src="myMainScript_33.png" alt=""> <h2 id="10">Code for Q2.e - canyon</h2><pre class="codeinput"><span class="comment">%CLAHE Analysis for canyon.png</span>
+</pre><img vspace="5" hspace="5" src="myMainScript_28.png" alt=""> <img vspace="5" hspace="5" src="myMainScript_29.png" alt=""> <img vspace="5" hspace="5" src="myMainScript_30.png" alt=""> <img vspace="5" hspace="5" src="myMainScript_31.png" alt=""> <img vspace="5" hspace="5" src="myMainScript_32.png" alt=""> <h2 id="11">Code for Q2.e - canyon</h2><pre class="codeinput"><span class="comment">%CLAHE Analysis for canyon.png</span>
 figure;
 hold <span class="string">on</span>;
 clahe_image = zeros(size(image3));
@@ -425,7 +430,7 @@ h =
 
     71
 
-</pre><img vspace="5" hspace="5" src="myMainScript_34.png" alt=""> <img vspace="5" hspace="5" src="myMainScript_35.png" alt=""> <img vspace="5" hspace="5" src="myMainScript_36.png" alt=""> <img vspace="5" hspace="5" src="myMainScript_37.png" alt=""> <img vspace="5" hspace="5" src="myMainScript_38.png" alt=""> <img vspace="5" hspace="5" src="myMainScript_39.png" alt=""> <h2 id="11">Code for Q2.e - chestXray</h2><pre class="codeinput"><span class="comment">%CLAHE Analysis for chestXray.png</span>
+</pre><img vspace="5" hspace="5" src="myMainScript_33.png" alt=""> <img vspace="5" hspace="5" src="myMainScript_34.png" alt=""> <img vspace="5" hspace="5" src="myMainScript_35.png" alt=""> <img vspace="5" hspace="5" src="myMainScript_36.png" alt=""> <img vspace="5" hspace="5" src="myMainScript_37.png" alt=""> <h2 id="12">Code for Q2.e - chestXray</h2><pre class="codeinput"><span class="comment">%CLAHE Analysis for chestXray.png</span>
 figure;
 hold <span class="string">on</span>;
 clahe_image6 = myCLAHE(image6,clahe_window,clahe_threshold);
@@ -478,31 +483,37 @@ h =
 
     71
 
-</pre><img vspace="5" hspace="5" src="myMainScript_40.png" alt=""> <img vspace="5" hspace="5" src="myMainScript_41.png" alt=""> <img vspace="5" hspace="5" src="myMainScript_42.png" alt=""> <img vspace="5" hspace="5" src="myMainScript_43.png" alt=""> <img vspace="5" hspace="5" src="myMainScript_44.png" alt=""> <p class="footer"><br><a href="https://www.mathworks.com/products/matlab/">Published with MATLAB&reg; R2019a</a><br></p></div><!--
+</pre><img vspace="5" hspace="5" src="myMainScript_38.png" alt=""> <img vspace="5" hspace="5" src="myMainScript_39.png" alt=""> <img vspace="5" hspace="5" src="myMainScript_40.png" alt=""> <img vspace="5" hspace="5" src="myMainScript_41.png" alt=""> <img vspace="5" hspace="5" src="myMainScript_42.png" alt=""> <p class="footer"><br><a href="https://www.mathworks.com/products/matlab/">Published with MATLAB&reg; R2019a</a><br></p></div><!--
 ##### SOURCE BEGIN #####
 %% MyMainScript
 tic;
 %% Your code here
-%% Q2 Main Script
+%% Assignment 1
 %  CS 663: Digital Image Processing, IIT Bombay (Autumn 2020)
 %  Aman Kansal, Ansh Khurana, Kushagra Juneja
 clc; clear all; close all;
 warning('off', 'all');
-
+%% Q2 Main Script
+% Individual functionalites have been implemented in 'getCDFTransform', 
+% 'myCLAHE', 'myForegroundMask', 'myHM', 'myHM' and
+% 'myLinearContrastStretching'
 %% Code for Q2.a
 % Statue image
 figure;
 im2 = imread("../data/statue.png");
 title("Original image");
+hold on;
 imshow(im2);
 
 figure;
 [mask, maskedImage] = myForegroundMask(im2);
 title("Mask");
+hold on;
 imshow(mask);
 
 figure;
 title("Masked image");
+hold on;
 imshow(maskedImage);
 
 toc;
@@ -512,12 +523,14 @@ toc;
 figure;
 im2 = imread("../data/barbara.png");
 title("Original image");
+hold on;
 imshow(im2);
 
 % Linear Contrast Stretching
 figure;
-contrastBarbara = uint8(myLinearContrastStretching(im2)) ;
+contrastBarbara = uint8(myLinearContrastStretching(im2));
 title("Linear Contrast Stretching");
+hold on;
 imshow(contrastBarbara);
 
 toc;
@@ -551,7 +564,7 @@ hold on;
 imshow(image2);
 
 figure;
-title("TEm.png - histogram equalized");
+title("TEM.png - histogram equalized");
 hold on;
 imshow(he_image2);
 
@@ -598,7 +611,7 @@ hold on;
 imshow(image6);
 
 figure;
-title("chestXray - original");
+title("chestXray - histogram equalized");
 hold on;
 imshow(he_image6);
 

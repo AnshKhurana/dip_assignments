@@ -1,26 +1,32 @@
 %% MyMainScript
 tic;
 %% Your code here
-%% Q2 Main Script
+%% Assignment 1
 %  CS 663: Digital Image Processing, IIT Bombay (Autumn 2020)
 %  Aman Kansal, Ansh Khurana, Kushagra Juneja
 clc; clear all; close all;
 warning('off', 'all');
-
+%% Q2 Main Script
+% Individual functionalites have been implemented in 'getCDFTransform', 
+% 'myCLAHE', 'myForegroundMask', 'myHM', 'myHM' and
+% 'myLinearContrastStretching'
 %% Code for Q2.a
 % Statue image
 figure;
 im2 = imread("../data/statue.png");
 title("Original image");
+hold on;
 imshow(im2);
 
 figure;
 [mask, maskedImage] = myForegroundMask(im2);
 title("Mask");
+hold on;
 imshow(mask);
 
 figure;
 title("Masked image");
+hold on;
 imshow(maskedImage);
 
 toc;
@@ -30,12 +36,14 @@ toc;
 figure;
 im2 = imread("../data/barbara.png");
 title("Original image");
+hold on;
 imshow(im2);
 
 % Linear Contrast Stretching
 figure;
-contrastBarbara = uint8(myLinearContrastStretching(im2)) ;
+contrastBarbara = uint8(myLinearContrastStretching(im2));
 title("Linear Contrast Stretching");
+hold on;
 imshow(contrastBarbara);
 
 toc;
@@ -69,7 +77,7 @@ hold on;
 imshow(image2);
 
 figure;
-title("TEm.png - histogram equalized");
+title("TEM.png - histogram equalized");
 hold on;
 imshow(he_image2);
 
@@ -116,7 +124,7 @@ hold on;
 imshow(image6);
 
 figure;
-title("chestXray - original");
+title("chestXray - histogram equalized");
 hold on;
 imshow(he_image6);
 

@@ -6,7 +6,7 @@
    <!--
 This HTML was auto-generated from MATLAB code.
 To make changes, update the MATLAB code and republish this document.
-      --><title>myMainScript</title><meta name="generator" content="MATLAB 9.6"><link rel="schema.DC" href="http://purl.org/dc/elements/1.1/"><meta name="DC.date" content="2020-08-29"><meta name="DC.source" content="myMainScript.m"><style type="text/css">
+      --><title>myMainScript</title><meta name="generator" content="MATLAB 9.6"><link rel="schema.DC" href="http://purl.org/dc/elements/1.1/"><meta name="DC.date" content="2020-08-31"><meta name="DC.source" content="myMainScript.m"><style type="text/css">
 html,body,div,span,applet,object,iframe,h1,h2,h3,h4,h5,h6,p,blockquote,pre,a,abbr,acronym,address,big,cite,code,del,dfn,em,font,img,ins,kbd,q,s,samp,small,strike,strong,sub,sup,tt,var,b,u,i,center,dl,dt,dd,ol,ul,li,fieldset,form,label,legend,table,caption,tbody,tfoot,thead,tr,th,td{margin:0;padding:0;border:0;outline:0;font-size:100%;vertical-align:baseline;background:transparent}body{line-height:1}ol,ul{list-style:none}blockquote,q{quotes:none}blockquote:before,blockquote:after,q:before,q:after{content:'';content:none}:focus{outine:0}ins{text-decoration:none}del{text-decoration:line-through}table{border-collapse:collapse;border-spacing:0}
 
 html { min-height:100%; margin-bottom:1px; }
@@ -66,232 +66,102 @@ table td { padding:7px 5px; text-align:left; vertical-align:top; border:1px soli
 
 
 
-  </style></head><body><div class="content"><h2>Contents</h2><div><ul><li><a href="#1">MyMainScript</a></li><li><a href="#2">Assignment1, Q1 Main Script</a></li><li><a href="#3">Code for Q1.a</a></li><li><a href="#4">Code for Q1.b,c</a></li><li><a href="#5">Code for Q1.d</a></li><li><a href="#6">Code for Q1.f</a></li></ul></div><h2 id="1">MyMainScript</h2><pre class="codeinput">tic;
-</pre><h2 id="2">Assignment1, Q1 Main Script</h2><pre>CS 663: Digital Image Processing, IIT Bombay (Autumn 2020)
-Aman Kansal, Ansh Khurana, Kushagra Juneja</pre><pre class="codeinput">clc; clear <span class="string">all</span>; close <span class="string">all</span>;
+  </style></head><body><div class="content"><h2>Contents</h2><div><ul><li><a href="#1">MyMainScript</a></li><li><a href="#2">CS 663: Digital Image Processing, IIT Bombay (Autumn 2020)</a></li><li><a href="#3">Q1: Image resizing and rotation</a></li><li><a href="#4">Code for Q1.a</a></li><li><a href="#5">Code for Q1.b,c,d</a></li><li><a href="#6">Code for Q1.f</a></li></ul></div><h2 id="1">MyMainScript</h2><pre class="codeinput">clc; clear <span class="string">all</span>; close <span class="string">all</span>;
 warning(<span class="string">'off'</span>, <span class="string">'all'</span>);
-</pre><h2 id="3">Code for Q1.a</h2><pre class="codeinput"><span class="comment">%Image Shrinking.</span>
 
-<span class="comment">% Original circles image</span>
-
+tic;
+</pre><h2 id="2">CS 663: Digital Image Processing, IIT Bombay (Autumn 2020)</h2><p>Aman Kansal, Ansh Khurana, Kushagra Juneja</p><p>Assignment 1</p><h2 id="3">Q1: Image resizing and rotation</h2><p>Implementation of the necessary functionalities can be found in the corresponding Matlab functions 'myShrinkImageByFactorD', 'myBicubicInterpolation', 'myBilinearInterpolation', 'myBilinearInterpolation' and 'myImageRotation'</p><h2 id="4">Code for Q1.a</h2><pre class="codeinput"><span class="comment">% Original circles image</span>
 im1 = imread(<span class="string">"../data/circles_concentric.png"</span>);
-<span class="comment">% figure;</span>
-<span class="comment">% hold on;</span>
-<span class="comment">% title("Original circles image");</span>
-<span class="comment">% daspect ([1 1 1]);</span>
-<span class="comment">% imshow(im1);</span>
-displayLockedAspectRatio(im1, <span class="string">"Original circles image"</span>);
-<span class="comment">% toc;</span>
+displayLockedAspectRatio(im1, <span class="string">"Original circles image"</span>, <span class="string">'1a_original_circles'</span>);
 
 <span class="comment">% Subsampled by 2 circles image</span>
 circles2 = myShrinkImageByFactorD(im1, 2);
-<span class="comment">% figure;</span>
-displayLockedAspectRatio(circles2, <span class="string">"Circles image subsampled by 2"</span>);
-<span class="comment">%</span>
-<span class="comment">% hold on;</span>
-<span class="comment">% title("Circles image subsampled by 2");</span>
-<span class="comment">% daspect ([1 1 1]);</span>
-<span class="comment">% imshow(circles2);</span>
-<span class="comment">%</span>
-<span class="comment">% toc;</span>
+displayLockedAspectRatio(circles2, <span class="string">"Circles image subsampled by 2"</span>, <span class="string">'1a_circles_shrink_f2'</span>);
 
 <span class="comment">% Subsampled by 3 circles image</span>
 circles3 = myShrinkImageByFactorD(im1, 3);
-displayLockedAspectRatio(circles3, <span class="string">"Circles image subsampled by 3"</span>);
-<span class="comment">% figure;</span>
-<span class="comment">%</span>
-<span class="comment">% hold on;</span>
-<span class="comment">% title("Circles image subsampled by 3");</span>
-<span class="comment">% daspect ([1 1 1]);</span>
-<span class="comment">% imshow(circles3);</span>
-
-<span class="comment">% toc;</span>
-</pre><img vspace="5" hspace="5" src="myMainScript_01.png" alt=""> <img vspace="5" hspace="5" src="myMainScript_02.png" alt=""> <img vspace="5" hspace="5" src="myMainScript_03.png" alt=""> <h2 id="4">Code for Q1.b,c</h2><p>Image Enlargement.</p><pre class="codeinput"><span class="comment">% Original barbara image</span>
-figure;
-im2 = imread(<span class="string">"../data/barbaraSmall.png"</span>);
-hold <span class="string">on</span>;
-title(<span class="string">"Original image"</span>);
-imshow(im2);
-
+displayLockedAspectRatio(circles3, <span class="string">"Circles image subsampled by 3"</span>, <span class="string">'1a_circles_shrink_f3'</span>);
 toc;
+</pre><pre class="codeoutput">Elapsed time is 1.803152 seconds.
+</pre><img vspace="5" hspace="5" src="myMainScript_01.png" alt=""> <img vspace="5" hspace="5" src="myMainScript_02.png" alt=""> <img vspace="5" hspace="5" src="myMainScript_03.png" alt=""> <h2 id="5">Code for Q1.b,c,d</h2><p>Original barbara image</p><pre class="codeinput">im2 = imread(<span class="string">"../data/barbaraSmall.png"</span>);
+displayLockedAspectRatio(im2, <span class="string">"Original image"</span>, <span class="string">'1b_barbara_original'</span>);
 
-<span class="comment">% Currently using uint8 approximation to display the image, change later to</span>
-<span class="comment">% display the color map and the double image properly</span>
-figure;
-barbaraBilinear = uint8(myBilinearInterpolation(im2, 3, 2));
-hold <span class="string">on</span>;
-title(<span class="string">"Bilinear Interpolated image"</span>);
-imshow(barbaraBilinear);
-
-toc;
+barbaraBilinear = myBilinearInterpolation(im2, 3, 2);
+displayLockedAspectRatio(barbaraBilinear, <span class="string">"Bilinear Interpolated image"</span>, <span class="string">'1b_barbara_bilinear'</span>);
 
 <span class="comment">% Nearest Neighbor Interpolation</span>
-figure;
-barbaraNN = uint8(myNearestNeighborInterpolation(im2));
-hold <span class="string">on</span>;
-title(<span class="string">"Nearest Neighbor Interpolated image"</span>);
-imshow(barbaraNN);
-
-toc;
-</pre><pre class="codeoutput">Elapsed time is 3.281072 seconds.
-Elapsed time is 3.465482 seconds.
-Elapsed time is 3.594284 seconds.
-</pre><img vspace="5" hspace="5" src="myMainScript_04.png" alt=""> <img vspace="5" hspace="5" src="myMainScript_05.png" alt=""> <img vspace="5" hspace="5" src="myMainScript_06.png" alt=""> <h2 id="5">Code for Q1.d</h2><p>Original barbara image</p><pre class="codeinput">figure;
-im2 = imread(<span class="string">"../data/barbaraSmall.png"</span>);
-hold <span class="string">on</span>;
-title(<span class="string">"Original image"</span>);
-imshow(im2);
-
-toc;
+barbaraNN = myNearestNeighborInterpolation(im2);
+displayLockedAspectRatio(barbaraNN, <span class="string">"Nearest Neighbor Interpolated image"</span>, <span class="string">'1c_barbara_nearest_neighbour'</span>);
 
 <span class="comment">%Interpolated image</span>
-figure;
-barbaraBicubic = uint8(myBicubicInterpolation(im2, 3, 2));
-hold <span class="string">on</span>;
-title(<span class="string">"Bicubic Interpolation"</span>);
-imshow(barbaraBicubic);
-
+barbaraBicubic = myBicubicInterpolation(im2, 3, 2);
+displayLockedAspectRatio(barbaraBicubic, <span class="string">"Bicubic Interpolation"</span>, <span class="string">'1d_barbara_bicubic'</span>);
 toc;
-</pre><pre class="codeoutput">Elapsed time is 4.239623 seconds.
-Elapsed time is 4.435577 seconds.
-</pre><img vspace="5" hspace="5" src="myMainScript_07.png" alt=""> <img vspace="5" hspace="5" src="myMainScript_08.png" alt=""> <h2 id="6">Code for Q1.f</h2><p>Original barbara image</p><pre class="codeinput">figure;
-im2 = imread(<span class="string">"../data/barbaraSmall.png"</span>);
-hold <span class="string">on</span>;
-title(<span class="string">"Original image"</span>);
-imshow(im2);
-
-toc;
-
+</pre><pre class="codeoutput">Elapsed time is 4.755127 seconds.
+</pre><img vspace="5" hspace="5" src="myMainScript_04.png" alt=""> <img vspace="5" hspace="5" src="myMainScript_05.png" alt=""> <img vspace="5" hspace="5" src="myMainScript_06.png" alt=""> <img vspace="5" hspace="5" src="myMainScript_07.png" alt=""> <h2 id="6">Code for Q1.f</h2><p>Original barbara image</p><pre class="codeinput">im2 = imread(<span class="string">"../data/barbaraSmall.png"</span>);
+displayLockedAspectRatio(im2, <span class="string">"Original image"</span>, <span class="string">'1f_barbara_small_original'</span>);
 <span class="comment">%Rotated image</span>
-figure;
-barbaraRotated = uint8(myImageRotation(im2, 30));
-hold <span class="string">on</span>;
-title(<span class="string">"Rotated image"</span>);
-imshow(barbaraRotated);
-
+barbaraRotated = myImageRotation(im2, 30);
+displayLockedAspectRatio(barbaraRotated, <span class="string">"Rotated image"</span>, <span class="string">'1f_barbara_small_rotated'</span>);
 toc;
-</pre><pre class="codeoutput">Elapsed time is 4.761884 seconds.
-Elapsed time is 4.894280 seconds.
-</pre><img vspace="5" hspace="5" src="myMainScript_09.png" alt=""> <img vspace="5" hspace="5" src="myMainScript_10.png" alt=""> <p class="footer"><br><a href="https://www.mathworks.com/products/matlab/">Published with MATLAB&reg; R2019a</a><br></p></div><!--
+</pre><pre class="codeoutput">Elapsed time is 6.694180 seconds.
+</pre><img vspace="5" hspace="5" src="myMainScript_08.png" alt=""> <img vspace="5" hspace="5" src="myMainScript_09.png" alt=""> <p class="footer"><br><a href="https://www.mathworks.com/products/matlab/">Published with MATLAB&reg; R2019a</a><br></p></div><!--
 ##### SOURCE BEGIN #####
 %% MyMainScript
 
-tic;
-%% Assignment1, Q1 Main Script
-%  CS 663: Digital Image Processing, IIT Bombay (Autumn 2020)
-%  Aman Kansal, Ansh Khurana, Kushagra Juneja  
 clc; clear all; close all;
 warning('off', 'all');
 
+tic;
+
+%%  CS 663: Digital Image Processing, IIT Bombay (Autumn 2020)
+% Aman Kansal, Ansh Khurana, Kushagra Juneja
+%
+% Assignment 1
+
+%% Q1: Image resizing and rotation
+% Implementation of the necessary functionalities can be found in the
+% corresponding Matlab functions 'myShrinkImageByFactorD',
+% 'myBicubicInterpolation', 'myBilinearInterpolation',
+% 'myBilinearInterpolation' and 'myImageRotation'
+
 %% Code for Q1.a
-%Image Shrinking.
 
 % Original circles image
-
 im1 = imread("../data/circles_concentric.png");
-% figure;
-% hold on;
-% title("Original circles image");
-% daspect ([1 1 1]);
-% imshow(im1);
-displayLockedAspectRatio(im1, "Original circles image");
-% toc;
+displayLockedAspectRatio(im1, "Original circles image", '1a_original_circles');
 
 % Subsampled by 2 circles image
 circles2 = myShrinkImageByFactorD(im1, 2);
-% figure;
-displayLockedAspectRatio(circles2, "Circles image subsampled by 2");
-% 
-% hold on;
-% title("Circles image subsampled by 2");
-% daspect ([1 1 1]);
-% imshow(circles2);
-% 
-% toc;
+displayLockedAspectRatio(circles2, "Circles image subsampled by 2", '1a_circles_shrink_f2');
 
 % Subsampled by 3 circles image
 circles3 = myShrinkImageByFactorD(im1, 3);
-displayLockedAspectRatio(circles3, "Circles image subsampled by 3");
-% figure;
-% 
-% hold on;
-% title("Circles image subsampled by 3");
-% daspect ([1 1 1]);
-% imshow(circles3);
-
-% toc;
-
-%% Code for Q1.b,c
-% Image Enlargement.
-
+displayLockedAspectRatio(circles3, "Circles image subsampled by 3", '1a_circles_shrink_f3');
+toc;
+%% Code for Q1.b,c,d
 % Original barbara image
-figure;
 im2 = imread("../data/barbaraSmall.png");
-hold on;
-title("Original image");
-imshow(im2);
+displayLockedAspectRatio(im2, "Original image", '1b_barbara_original');
 
-toc;
-
-% Currently using uint8 approximation to display the image, change later to
-% display the color map and the double image properly
-figure;
-barbaraBilinear = uint8(myBilinearInterpolation(im2, 3, 2));
-hold on;
-title("Bilinear Interpolated image");
-imshow(barbaraBilinear);
-
-toc;
+barbaraBilinear = myBilinearInterpolation(im2, 3, 2);
+displayLockedAspectRatio(barbaraBilinear, "Bilinear Interpolated image", '1b_barbara_bilinear');
 
 % Nearest Neighbor Interpolation
-figure;
-barbaraNN = uint8(myNearestNeighborInterpolation(im2));
-hold on;
-title("Nearest Neighbor Interpolated image");
-imshow(barbaraNN);
-
-toc;
-
-%% Code for Q1.d
-% Original barbara image
-figure;
-im2 = imread("../data/barbaraSmall.png");
-hold on;
-title("Original image");
-imshow(im2);
-
-toc;
+barbaraNN = myNearestNeighborInterpolation(im2);
+displayLockedAspectRatio(barbaraNN, "Nearest Neighbor Interpolated image", '1c_barbara_nearest_neighbour');
 
 %Interpolated image
-figure;
-barbaraBicubic = uint8(myBicubicInterpolation(im2, 3, 2));
-hold on;
-title("Bicubic Interpolation");
-imshow(barbaraBicubic);
-
+barbaraBicubic = myBicubicInterpolation(im2, 3, 2);
+displayLockedAspectRatio(barbaraBicubic, "Bicubic Interpolation", '1d_barbara_bicubic');
 toc;
-
-
 %% Code for Q1.f
 % Original barbara image
-figure;
 im2 = imread("../data/barbaraSmall.png");
-hold on;
-title("Original image");
-imshow(im2);
-
-toc;
-
+displayLockedAspectRatio(im2, "Original image", '1f_barbara_small_original');
 %Rotated image
-figure;
-barbaraRotated = uint8(myImageRotation(im2, 30));
-hold on;
-title("Rotated image");
-imshow(barbaraRotated);
-
+barbaraRotated = myImageRotation(im2, 30);
+displayLockedAspectRatio(barbaraRotated, "Rotated image", '1f_barbara_small_rotated');
 toc;
-
-
-
 ##### SOURCE END #####
 --></body></html>
