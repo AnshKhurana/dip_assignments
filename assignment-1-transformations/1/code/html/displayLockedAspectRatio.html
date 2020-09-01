@@ -6,7 +6,7 @@
    <!--
 This HTML was auto-generated from MATLAB code.
 To make changes, update the MATLAB code and republish this document.
-      --><title>displayLockedAspectRatio</title><meta name="generator" content="MATLAB 9.6"><link rel="schema.DC" href="http://purl.org/dc/elements/1.1/"><meta name="DC.date" content="2020-08-31"><meta name="DC.source" content="displayLockedAspectRatio.m"><style type="text/css">
+      --><title>displayLockedAspectRatio</title><meta name="generator" content="MATLAB 9.6"><link rel="schema.DC" href="http://purl.org/dc/elements/1.1/"><meta name="DC.date" content="2020-09-01"><meta name="DC.source" content="displayLockedAspectRatio.m"><style type="text/css">
 html,body,div,span,applet,object,iframe,h1,h2,h3,h4,h5,h6,p,blockquote,pre,a,abbr,acronym,address,big,cite,code,del,dfn,em,font,img,ins,kbd,q,s,samp,small,strike,strong,sub,sup,tt,var,b,u,i,center,dl,dt,dd,ol,ul,li,fieldset,form,label,legend,table,caption,tbody,tfoot,thead,tr,th,td{margin:0;padding:0;border:0;outline:0;font-size:100%;vertical-align:baseline;background:transparent}body{line-height:1}ol,ul{list-style:none}blockquote,q{quotes:none}blockquote:before,blockquote:after,q:before,q:after{content:'';content:none}:focus{outine:0}ins{text-decoration:none}del{text-decoration:line-through}table{border-collapse:collapse;border-spacing:0}
 
 html { min-height:100%; margin-bottom:1px; }
@@ -68,37 +68,33 @@ table td { padding:7px 5px; text-align:left; vertical-align:top; border:1px soli
 
   </style></head><body><div class="content"><pre class="codeinput"><span class="keyword">function</span> displayLockedAspectRatio(img, title_string, filename)
 figure;
-hold <span class="string">on</span>;
 imshow(img, <span class="string">'DisplayRange'</span>, [0, 255]);
 daspect ([1 1 1]);
-title(title_string);
 axis <span class="string">on</span>;
 hold <span class="string">on</span>;
-
-<span class="comment">% hold on;</span>
+title(title_string);
 colorbar;
-
 fig = gcf;
-save(strcat(<span class="string">'../images/'</span>,filename,<span class="string">'.mat'</span>), <span class="string">'fig'</span>, <span class="string">'-mat'</span>);
+truesize(fig,[400 400]);
+set(gcf,<span class="string">'units'</span>,<span class="string">'centimeters'</span>,<span class="string">'position'</span>,[0 0 16 16]);
+saveas(gcf, strcat(<span class="string">'../images/'</span>,filename,<span class="string">'.png'</span>));
 </pre><pre class="codeoutput error">Not enough input arguments.
 
-Error in displayLockedAspectRatio (line 4)
+Error in displayLockedAspectRatio (line 3)
 imshow(img, 'DisplayRange', [0, 255]);
 </pre><p class="footer"><br><a href="https://www.mathworks.com/products/matlab/">Published with MATLAB&reg; R2019a</a><br></p></div><!--
 ##### SOURCE BEGIN #####
 function displayLockedAspectRatio(img, title_string, filename)
 figure;
-hold on;
 imshow(img, 'DisplayRange', [0, 255]);
 daspect ([1 1 1]);
-title(title_string);
 axis on;
 hold on;
-
-% hold on;
+title(title_string);
 colorbar;
-
 fig = gcf;
-save(strcat('../images/',filename,'.mat'), 'fig', '-mat');
+truesize(fig,[400 400]);
+set(gcf,'units','centimeters','position',[0 0 16 16]);
+saveas(gcf, strcat('../images/',filename,'.png'));
 ##### SOURCE END #####
 --></body></html>

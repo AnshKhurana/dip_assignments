@@ -6,7 +6,7 @@
    <!--
 This HTML was auto-generated from MATLAB code.
 To make changes, update the MATLAB code and republish this document.
-      --><title>myMainScript</title><meta name="generator" content="MATLAB 9.6"><link rel="schema.DC" href="http://purl.org/dc/elements/1.1/"><meta name="DC.date" content="2020-08-31"><meta name="DC.source" content="myMainScript.m"><style type="text/css">
+      --><title>myMainScript</title><meta name="generator" content="MATLAB 9.6"><link rel="schema.DC" href="http://purl.org/dc/elements/1.1/"><meta name="DC.date" content="2020-09-01"><meta name="DC.source" content="myMainScript.m"><style type="text/css">
 html,body,div,span,applet,object,iframe,h1,h2,h3,h4,h5,h6,p,blockquote,pre,a,abbr,acronym,address,big,cite,code,del,dfn,em,font,img,ins,kbd,q,s,samp,small,strike,strong,sub,sup,tt,var,b,u,i,center,dl,dt,dd,ol,ul,li,fieldset,form,label,legend,table,caption,tbody,tfoot,thead,tr,th,td{margin:0;padding:0;border:0;outline:0;font-size:100%;vertical-align:baseline;background:transparent}body{line-height:1}ol,ul{list-style:none}blockquote,q{quotes:none}blockquote:before,blockquote:after,q:before,q:after{content:'';content:none}:focus{outine:0}ins{text-decoration:none}del{text-decoration:line-through}table{border-collapse:collapse;border-spacing:0}
 
 html { min-height:100%; margin-bottom:1px; }
@@ -82,7 +82,7 @@ displayLockedAspectRatio(circles2, <span class="string">"Circles image subsample
 circles3 = myShrinkImageByFactorD(im1, 3);
 displayLockedAspectRatio(circles3, <span class="string">"Circles image subsampled by 3"</span>, <span class="string">'1a_circles_shrink_f3'</span>);
 toc;
-</pre><pre class="codeoutput">Elapsed time is 1.803152 seconds.
+</pre><pre class="codeoutput">Elapsed time is 3.206323 seconds.
 </pre><img vspace="5" hspace="5" src="myMainScript_01.png" alt=""> <img vspace="5" hspace="5" src="myMainScript_02.png" alt=""> <img vspace="5" hspace="5" src="myMainScript_03.png" alt=""> <h2 id="5">Code for Q1.b,c,d</h2><p>Original barbara image</p><pre class="codeinput">im2 = imread(<span class="string">"../data/barbaraSmall.png"</span>);
 displayLockedAspectRatio(im2, <span class="string">"Original image"</span>, <span class="string">'1b_barbara_original'</span>);
 
@@ -97,14 +97,14 @@ displayLockedAspectRatio(barbaraNN, <span class="string">"Nearest Neighbor Inter
 barbaraBicubic = myBicubicInterpolation(im2, 3, 2);
 displayLockedAspectRatio(barbaraBicubic, <span class="string">"Bicubic Interpolation"</span>, <span class="string">'1d_barbara_bicubic'</span>);
 toc;
-</pre><pre class="codeoutput">Elapsed time is 4.755127 seconds.
+</pre><pre class="codeoutput">Elapsed time is 6.830150 seconds.
 </pre><img vspace="5" hspace="5" src="myMainScript_04.png" alt=""> <img vspace="5" hspace="5" src="myMainScript_05.png" alt=""> <img vspace="5" hspace="5" src="myMainScript_06.png" alt=""> <img vspace="5" hspace="5" src="myMainScript_07.png" alt=""> <h2 id="6">Code for Q1.f</h2><p>Original barbara image</p><pre class="codeinput">im2 = imread(<span class="string">"../data/barbaraSmall.png"</span>);
 displayLockedAspectRatio(im2, <span class="string">"Original image"</span>, <span class="string">'1f_barbara_small_original'</span>);
 <span class="comment">%Rotated image</span>
 barbaraRotated = myImageRotation(im2, 30);
 displayLockedAspectRatio(barbaraRotated, <span class="string">"Rotated image"</span>, <span class="string">'1f_barbara_small_rotated'</span>);
 toc;
-</pre><pre class="codeoutput">Elapsed time is 6.694180 seconds.
+</pre><pre class="codeoutput">Elapsed time is 9.122299 seconds.
 </pre><img vspace="5" hspace="5" src="myMainScript_08.png" alt=""> <img vspace="5" hspace="5" src="myMainScript_09.png" alt=""> <p class="footer"><br><a href="https://www.mathworks.com/products/matlab/">Published with MATLAB&reg; R2019a</a><br></p></div><!--
 ##### SOURCE BEGIN #####
 %% MyMainScript
