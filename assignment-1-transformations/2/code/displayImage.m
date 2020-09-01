@@ -1,9 +1,9 @@
 function displayImage(image, title_string)
 figure;
+title(title_string);
 hold on;
 imshow(image);
-hold on;
-title(title_string);
-% set(gcf, 'title', title_string);
+% colorbar;
 
-%  save(strcat('../results/1f_mems_',num2str(k) ,'.mat'), 'fig', '-mat');
+
+% set(gcf, 'title', title_string);

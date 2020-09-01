@@ -1,6 +1,6 @@
 function clahe_image = myCLAHE(src_image, k, h)
     img_size = size(src_image);
-    h = round(h*(2*k+1)*(2*k+1))
+    h = round(h*(2*k+1)*(2*k+1));
     clahe_image = zeros(img_size);
 %     for channel = 1:img_size(3)
         grey_image_component = src_image(:,:);
@@ -21,8 +21,8 @@ function clahe_image = myCLAHE(src_image, k, h)
                 clahe_cdf = cumsum(clahe_hist)/sum(clahe_hist);
                 
                 clahe_image(r,c) = clahe_cdf(src_image(r,c)+1);
+            end
         end
-    end
     
         
 end
