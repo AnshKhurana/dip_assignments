@@ -31,6 +31,14 @@ imshow(maskedImage);
 
 toc;
 
+%% Explanation for Q2.b
+% Linear Contrast stretching is not effective on image (5) i.e. the church image. This is because the range of 
+% intensities in the original image is almost same as the full range of possible intensities i.e. 0 to 255. 
+% In other words, there are both very dark and very light pixels in the image. Hence, linear contrast stretching
+% would not be able to change the effective range of intensities of the pixels, hence it would not be of much use
+% in this image.
+
+
 %% Code for Q2.b
 % Barbara image
 figure;
@@ -47,6 +55,13 @@ hold on;
 imshow(contrastBarbara);
 
 toc;
+
+%% Explanation for Q2.c
+% Histogram equalization does a good job on image (5) ie. church image, hence I would prefer it over linear
+% contrast stretching. This is because the image has a peak in the number of pixels having very low intensities( i.e. black)
+% Linear Contrast Stretching is not able to cause much contrast in these pixels. However, histogram equalization works
+% quite well to bring contrast in this part of the image. This is because in histogram equalization, the stretch depends on the 
+% number of pixels in each bin (or cdf equivalently) unlike linear contrast stretching.
 
 %% Code for Q2. c
 
@@ -142,6 +157,15 @@ hold on;
 imshow(he_image7);
 
 
+
+%% Observations for Q2.d
+% The histogram equalized image appears very different from our expectation of an image of retina. This is because
+% the images of retina would have a specific distribution of RGB intensities and histogram equalization converts each of 
+% them into a flat distribution. Hence, this causes issues like pink colour of veins etc.
+% The results of histogram matched image are much better. The increase in contrast from the original image is apparent
+% as well as there are no absurd artifacts like pink veins unlike histogram equalization. This is because in histogram matching
+% we are already providing the expected distribution of the RGB intensities in a retina image and the algorithm is trying to 
+% match that hence providing much better results.
 
 %% 2d.
 input_image = imread('../data/retina.png');
