@@ -46,6 +46,29 @@ displayLockedAspectRatio(barbaraNN, "Nearest Neighbor Interpolated image", '1c_b
 barbaraBicubic = myBicubicInterpolation(im2, 3, 2);
 displayLockedAspectRatio(barbaraBicubic, "Bicubic Interpolation", '1d_barbara_bicubic');
 toc;
+%% Code for Q1.e
+%  Here we take a small crop out of the image of the size 40x40.
+%  Since Nearest Neighbour interpolation assigns the value at a point in the
+% domain of the function to its nearest neighbour at which the value is
+% known, NN interpolation results in a pixelated image with
+% discontinuities. (A small patch would be assigned the same value based on distance)
+%  Bilinear and Bicubic interpolation techniques result in a more smoother
+%  approximation and less pixelation in the input. Within the two
+%  techniques, Bicubic interpolation produces a smoother output due to
+%  consistency in the first derivatives as well. This can be seen in a more
+%  gradual transition from blue to green in the top right region. 
+
+X_MIN=1;
+X_MAX = 41;
+Y_MIN = 120;
+Y_MAX = 161;
+bilinear_crop = barbaraBilinear(X_MIN:X_MAX, Y_MIN:Y_MAX);
+bicubic_crop = barbaraBicubic(X_MIN:X_MAX, Y_MIN:Y_MAX);
+nn_crop = barbaraNN(X_MIN:X_MAX, Y_MIN:Y_MAX);
+displayJet(bilinear_crop, "Small crop of bilinear interpolation output", '1e_barbara_bilinear_crop');
+displayJet(bicubic_crop, "Small crop of bicubic interpolation output", '1e_barbara_bicubic_crop');
+displayJet(nn_crop, "Small crop of nearest neighbour interpolation output", '1e_barbara_nn_crop');
+toc;
 %% Code for Q1.f
 % Original barbara image
 im2 = imread("../data/barbaraSmall.png");

@@ -45,7 +45,6 @@ contrastBarbara = uint8(myLinearContrastStretching(im2));
 title("Linear Contrast Stretching");
 hold on;
 imshow(contrastBarbara);
-
 toc;
 
 %% Code for Q2. c

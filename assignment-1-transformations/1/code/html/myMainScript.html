@@ -66,7 +66,7 @@ table td { padding:7px 5px; text-align:left; vertical-align:top; border:1px soli
 
 
 
-  </style></head><body><div class="content"><h2>Contents</h2><div><ul><li><a href="#1">MyMainScript</a></li><li><a href="#2">CS 663: Digital Image Processing, IIT Bombay (Autumn 2020)</a></li><li><a href="#3">Q1: Image resizing and rotation</a></li><li><a href="#4">Code for Q1.a</a></li><li><a href="#5">Code for Q1.b,c,d</a></li><li><a href="#6">Code for Q1.f</a></li></ul></div><h2 id="1">MyMainScript</h2><pre class="codeinput">clc; clear <span class="string">all</span>; close <span class="string">all</span>;
+  </style></head><body><div class="content"><h2>Contents</h2><div><ul><li><a href="#1">MyMainScript</a></li><li><a href="#2">CS 663: Digital Image Processing, IIT Bombay (Autumn 2020)</a></li><li><a href="#3">Q1: Image resizing and rotation</a></li><li><a href="#4">Code for Q1.a</a></li><li><a href="#5">Code for Q1.b,c,d</a></li><li><a href="#6">Code for Q1.e</a></li><li><a href="#7">Code for Q1.f</a></li></ul></div><h2 id="1">MyMainScript</h2><pre class="codeinput">clc; clear <span class="string">all</span>; close <span class="string">all</span>;
 warning(<span class="string">'off'</span>, <span class="string">'all'</span>);
 
 tic;
@@ -82,7 +82,7 @@ displayLockedAspectRatio(circles2, <span class="string">"Circles image subsample
 circles3 = myShrinkImageByFactorD(im1, 3);
 displayLockedAspectRatio(circles3, <span class="string">"Circles image subsampled by 3"</span>, <span class="string">'1a_circles_shrink_f3'</span>);
 toc;
-</pre><pre class="codeoutput">Elapsed time is 3.206323 seconds.
+</pre><pre class="codeoutput">Elapsed time is 2.879761 seconds.
 </pre><img vspace="5" hspace="5" src="myMainScript_01.png" alt=""> <img vspace="5" hspace="5" src="myMainScript_02.png" alt=""> <img vspace="5" hspace="5" src="myMainScript_03.png" alt=""> <h2 id="5">Code for Q1.b,c,d</h2><p>Original barbara image</p><pre class="codeinput">im2 = imread(<span class="string">"../data/barbaraSmall.png"</span>);
 displayLockedAspectRatio(im2, <span class="string">"Original image"</span>, <span class="string">'1b_barbara_original'</span>);
 
@@ -97,15 +97,36 @@ displayLockedAspectRatio(barbaraNN, <span class="string">"Nearest Neighbor Inter
 barbaraBicubic = myBicubicInterpolation(im2, 3, 2);
 displayLockedAspectRatio(barbaraBicubic, <span class="string">"Bicubic Interpolation"</span>, <span class="string">'1d_barbara_bicubic'</span>);
 toc;
-</pre><pre class="codeoutput">Elapsed time is 6.830150 seconds.
-</pre><img vspace="5" hspace="5" src="myMainScript_04.png" alt=""> <img vspace="5" hspace="5" src="myMainScript_05.png" alt=""> <img vspace="5" hspace="5" src="myMainScript_06.png" alt=""> <img vspace="5" hspace="5" src="myMainScript_07.png" alt=""> <h2 id="6">Code for Q1.f</h2><p>Original barbara image</p><pre class="codeinput">im2 = imread(<span class="string">"../data/barbaraSmall.png"</span>);
+</pre><pre class="codeoutput">Elapsed time is 6.167400 seconds.
+</pre><img vspace="5" hspace="5" src="myMainScript_04.png" alt=""> <img vspace="5" hspace="5" src="myMainScript_05.png" alt=""> <img vspace="5" hspace="5" src="myMainScript_06.png" alt=""> <img vspace="5" hspace="5" src="myMainScript_07.png" alt=""> <h2 id="6">Code for Q1.e</h2><pre>Here we take a small crop out of the image of the size 40x40.
+Since Nearest Neighbour interpolation assigns the value at a point in the
+domain of the function to its nearest neighbour at which the value is
+known, NN interpolation results in a pixelated image with
+discontinuities. (A small patch would be assigned the same value based on distance)
+Bilinear and Bicubic interpolation techniques result in a more smoother
+approximation and less pixelation in the input. Within the two
+techniques, Bicubic interpolation produces a smoother output due to
+consistency in the first derivatives as well. This can be seen in a more
+gradual transition from blue to green in the top right region.</pre><pre class="codeinput">X_MIN=1;
+X_MAX = 41;
+Y_MIN = 120;
+Y_MAX = 161;
+bilinear_crop = barbaraBilinear(X_MIN:X_MAX, Y_MIN:Y_MAX);
+bicubic_crop = barbaraBicubic(X_MIN:X_MAX, Y_MIN:Y_MAX);
+nn_crop = barbaraNN(X_MIN:X_MAX, Y_MIN:Y_MAX);
+displayJet(bilinear_crop, <span class="string">"Small crop of bilinear interpolation output"</span>, <span class="string">'1e_barbara_bilinear_crop'</span>);
+displayJet(bicubic_crop, <span class="string">"Small crop of bicubic interpolation output"</span>, <span class="string">'1e_barbara_bicubic_crop'</span>);
+displayJet(nn_crop, <span class="string">"Small crop of nearest neighbour interpolation output"</span>, <span class="string">'1e_barbara_nn_crop'</span>);
+toc;
+</pre><pre class="codeoutput">Elapsed time is 8.664039 seconds.
+</pre><img vspace="5" hspace="5" src="myMainScript_08.png" alt=""> <img vspace="5" hspace="5" src="myMainScript_09.png" alt=""> <img vspace="5" hspace="5" src="myMainScript_10.png" alt=""> <h2 id="7">Code for Q1.f</h2><p>Original barbara image</p><pre class="codeinput">im2 = imread(<span class="string">"../data/barbaraSmall.png"</span>);
 displayLockedAspectRatio(im2, <span class="string">"Original image"</span>, <span class="string">'1f_barbara_small_original'</span>);
 <span class="comment">%Rotated image</span>
 barbaraRotated = myImageRotation(im2, 30);
 displayLockedAspectRatio(barbaraRotated, <span class="string">"Rotated image"</span>, <span class="string">'1f_barbara_small_rotated'</span>);
 toc;
-</pre><pre class="codeoutput">Elapsed time is 9.122299 seconds.
-</pre><img vspace="5" hspace="5" src="myMainScript_08.png" alt=""> <img vspace="5" hspace="5" src="myMainScript_09.png" alt=""> <p class="footer"><br><a href="https://www.mathworks.com/products/matlab/">Published with MATLAB&reg; R2019a</a><br></p></div><!--
+</pre><pre class="codeoutput">Elapsed time is 10.415709 seconds.
+</pre><img vspace="5" hspace="5" src="myMainScript_11.png" alt=""> <img vspace="5" hspace="5" src="myMainScript_12.png" alt=""> <p class="footer"><br><a href="https://www.mathworks.com/products/matlab/">Published with MATLAB&reg; R2019a</a><br></p></div><!--
 ##### SOURCE BEGIN #####
 %% MyMainScript
 
@@ -154,6 +175,29 @@ displayLockedAspectRatio(barbaraNN, "Nearest Neighbor Interpolated image", '1c_b
 %Interpolated image
 barbaraBicubic = myBicubicInterpolation(im2, 3, 2);
 displayLockedAspectRatio(barbaraBicubic, "Bicubic Interpolation", '1d_barbara_bicubic');
+toc;
+%% Code for Q1.e
+%  Here we take a small crop out of the image of the size 40x40.
+%  Since Nearest Neighbour interpolation assigns the value at a point in the
+% domain of the function to its nearest neighbour at which the value is
+% known, NN interpolation results in a pixelated image with
+% discontinuities. (A small patch would be assigned the same value based on distance)
+%  Bilinear and Bicubic interpolation techniques result in a more smoother
+%  approximation and less pixelation in the input. Within the two
+%  techniques, Bicubic interpolation produces a smoother output due to
+%  consistency in the first derivatives as well. This can be seen in a more
+%  gradual transition from blue to green in the top right region. 
+
+X_MIN=1;
+X_MAX = 41;
+Y_MIN = 120;
+Y_MAX = 161;
+bilinear_crop = barbaraBilinear(X_MIN:X_MAX, Y_MIN:Y_MAX);
+bicubic_crop = barbaraBicubic(X_MIN:X_MAX, Y_MIN:Y_MAX);
+nn_crop = barbaraNN(X_MIN:X_MAX, Y_MIN:Y_MAX);
+displayJet(bilinear_crop, "Small crop of bilinear interpolation output", '1e_barbara_bilinear_crop');
+displayJet(bicubic_crop, "Small crop of bicubic interpolation output", '1e_barbara_bicubic_crop');
+displayJet(nn_crop, "Small crop of nearest neighbour interpolation output", '1e_barbara_nn_crop');
 toc;
 %% Code for Q1.f
 % Original barbara image
