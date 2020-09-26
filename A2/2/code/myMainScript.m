@@ -17,39 +17,37 @@ tic;
 %% Barbara image
 img_barbara = load('../data/barbara.mat');
 img_barbara = im2double(img_barbara.imageOrig);
+%% Grid Search
+i_range = 10:2:30;
+s_range = 0.3:0.1:1.5;
+[sigma_intensity, sigma_spatial] = performGridSearch(img_barbara, 'Barbara', i_range, s_range, 7);
 
 %% Best values
-sigma_intensity = 15;
-sigma_spatial = 0.6;
 showBest(img_barbara, 'Barbara', sigma_intensity, sigma_spatial, 7)
-% noisy_barbara = addGaussianNoise(img_barbara, 0.05);
-% 
-% %%  best filtered image
-% displayImage(img_barbara, 'Original barbara image');
-% displayImage(noisy_barbara, sprintf('Barbara image with Gaussian noise (RMSD=%f)', myRMSD(img_barbara, noisy_barbara)));
-% sigma_intensity = 15;
-% sigma_spatial = 0.7;
-% denoised_barbara = myBilateralFiltering(noisy_barbara, sigma_intensity, sigma_spatial, 7);
-% displayImage(denoised_barbara, sprintf('Barbara image with Bilateral Filtering (RMSD=%f)', myRMSD(img_barbara, denoised_barbara)));
-% window_size = 7;
-% spatial_filter = fspecial('gaussian', [window_size, window_size], sigma_spatial);
-% % max(spatial_filter(:))
-% % spatial_to_range = spatial_filter*255;
-% displayImage(spatial_filter, 'Visualization of the spatial gaussian filter', max(spatial_filter(:)));
+
 
 %% Grass Image
 img_grass = imread('../data/grass.png');
-img_grass = double(img_grass);
+img_grass = im2double(img_grass);
+
+%% Grid Search
+i_range = 10:2:30;
+s_range = 0.3:0.1:1.5;
+[sigma_intensity, sigma_spatial] = performGridSearch(img_grass, 'Grass', i_range, s_range, 7);
 
 %% Best values
-sigma_intensity = 15;
-sigma_spatial = 0.6;
 showBest(img_grass, 'Grass', sigma_intensity, sigma_spatial, 7);
-% 
-% 
-% img_honey = imread('../data/honeyCombReal.png');
-% displayImage(img_honey, 'Original honey image');
 
+% HoneyComb image
+img_honey = imread('../data/honeyCombReal.png');
+img_honey = im2double(img_honey);
 
+%% Grid Search
+i_range = 10:2:30;
+s_range = 0.3:0.1:1.5;
+[sigma_intensity, sigma_spatial] = performGridSearch(img_honey, 'HoneyComb', i_range, s_range, 7);
+
+%% Best values
+showBest(img_honey, 'HoneyComb', sigma_intensity, sigma_spatial, 7);
 
 toc;

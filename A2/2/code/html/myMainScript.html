@@ -66,7 +66,7 @@ table td { padding:7px 5px; text-align:left; vertical-align:top; border:1px soli
 
 
 
-  </style></head><body><div class="content"><h2>Contents</h2><div><ul><li><a href="#1">MyMainScript</a></li><li><a href="#2">CS 663: Digital Image Processing, IIT Bombay (Autumn 2020)</a></li><li><a href="#3">Barbara image</a></li><li><a href="#4">best filtered image</a></li><li><a href="#5">Grass Image</a></li></ul></div><h2 id="1">MyMainScript</h2><pre class="codeinput">clc; clear <span class="string">all</span>; close <span class="string">all</span>;
+  </style></head><body><div class="content"><h2>Contents</h2><div><ul><li><a href="#1">MyMainScript</a></li><li><a href="#2">CS 663: Digital Image Processing, IIT Bombay (Autumn 2020)</a></li><li><a href="#3">Barbara image</a></li><li><a href="#4">Best values</a></li><li><a href="#5">Grass Image</a></li><li><a href="#6">Best values</a></li></ul></div><h2 id="1">MyMainScript</h2><pre class="codeinput">clc; clear <span class="string">all</span>; close <span class="string">all</span>;
 warning(<span class="string">'off'</span>, <span class="string">'all'</span>);
 
 tic;
@@ -74,23 +74,16 @@ tic;
 <span class="comment">% Edge-preserving Smoothing using Bilateral Filtering.</span>
 <span class="comment">% Assuming equal dimensions</span>
 </pre><h2 id="3">Barbara image</h2><pre class="codeinput">img_barbara = load(<span class="string">'../data/barbara.mat'</span>);
-img_barbara = double(img_barbara.imageOrig);
-noisy_barbara = addGaussianNoise(img_barbara, 0.05);
-</pre><h2 id="4">best filtered image</h2><pre class="codeinput">displayImage(img_barbara, <span class="string">'Original barbara image'</span>);
-displayImage(noisy_barbara, sprintf(<span class="string">'Barbara image with Gaussian noise (RMSD=%f)'</span>, myRMSD(img_barbara, noisy_barbara)));
-
-sigma_intensity = 5;
-sigma_spatial = 3;
-denoised_barbara = myBilateralFiltering(noisy_barbara, sigma_intensity, sigma_spatial);
-displayImage(denoised_barbara, sprintf(<span class="string">'Barbara image with Bilateral Filtering (RMSD=%f)'</span>, myRMSD(img_barbara, denoised_barbara)));
-window_size = 6*sigma_spatial+1;
-spatial_filter = fspecial(<span class="string">'gaussian'</span>, [window_size, window_size], sigma_spatial);
-displayImage(spatial_filter, <span class="string">'Visualization of the spatial gaussian filter'</span>);
+img_barbara = im2double(img_barbara.imageOrig);
+</pre><h2 id="4">Best values</h2><pre class="codeinput">sigma_intensity = 15;
+sigma_spatial = 0.6;
+showBest(img_barbara, <span class="string">'Barbara'</span>, sigma_intensity, sigma_spatial, 7)
+</pre><pre class="codeoutput">Optimal parameters: sigma_spatial = 0.600000 sigma_intensity = 15.000000 obtaining RMSD = 3.559708
 </pre><img vspace="5" hspace="5" src="myMainScript_01.png" alt=""> <img vspace="5" hspace="5" src="myMainScript_02.png" alt=""> <img vspace="5" hspace="5" src="myMainScript_03.png" alt=""> <img vspace="5" hspace="5" src="myMainScript_04.png" alt=""> <h2 id="5">Grass Image</h2><pre class="codeinput">img_grass = imread(<span class="string">'../data/grass.png'</span>);
 img_grass = double(img_grass);
-sigma_intensity = 5;
-sigma_spatial = 3;
-showBest(img_grass, <span class="string">'Grass'</span>, sigma_intensity, sigma_spatial);
+</pre><h2 id="6">Best values</h2><pre class="codeinput">sigma_intensity = 15;
+sigma_spatial = 0.6;
+showBest(img_grass, <span class="string">'Grass'</span>, sigma_intensity, sigma_spatial, 7);
 <span class="comment">%</span>
 <span class="comment">%</span>
 <span class="comment">% img_honey = imread('../data/honeyCombReal.png');</span>
@@ -99,7 +92,8 @@ showBest(img_grass, <span class="string">'Grass'</span>, sigma_intensity, sigma_
 
 
 toc;
-</pre><pre class="codeoutput">Elapsed time is 7.691756 seconds.
+</pre><pre class="codeoutput">Optimal parameters: sigma_spatial = 0.600000 sigma_intensity = 15.000000 obtaining RMSD = 10.291430
+Elapsed time is 5.999546 seconds.
 </pre><img vspace="5" hspace="5" src="myMainScript_05.png" alt=""> <img vspace="5" hspace="5" src="myMainScript_06.png" alt=""> <img vspace="5" hspace="5" src="myMainScript_07.png" alt=""> <img vspace="5" hspace="5" src="myMainScript_08.png" alt=""> <p class="footer"><br><a href="https://www.mathworks.com/products/matlab/">Published with MATLAB&reg; R2019a</a><br></p></div><!--
 ##### SOURCE BEGIN #####
 %% MyMainScript
@@ -120,27 +114,22 @@ tic;
 
 %% Barbara image
 img_barbara = load('../data/barbara.mat');
-img_barbara = double(img_barbara.imageOrig);
-noisy_barbara = addGaussianNoise(img_barbara, 0.05);
+img_barbara = im2double(img_barbara.imageOrig);
 
-%%  best filtered image
-displayImage(img_barbara, 'Original barbara image');
-displayImage(noisy_barbara, sprintf('Barbara image with Gaussian noise (RMSD=%f)', myRMSD(img_barbara, noisy_barbara)));
+%% Best values
+sigma_intensity = 15;
+sigma_spatial = 0.6;
+showBest(img_barbara, 'Barbara', sigma_intensity, sigma_spatial, 7)
 
-sigma_intensity = 5;
-sigma_spatial = 3;
-denoised_barbara = myBilateralFiltering(noisy_barbara, sigma_intensity, sigma_spatial);
-displayImage(denoised_barbara, sprintf('Barbara image with Bilateral Filtering (RMSD=%f)', myRMSD(img_barbara, denoised_barbara)));
-window_size = 6*sigma_spatial+1;
-spatial_filter = fspecial('gaussian', [window_size, window_size], sigma_spatial);
-displayImage(spatial_filter, 'Visualization of the spatial gaussian filter');
 
 %% Grass Image
 img_grass = imread('../data/grass.png');
 img_grass = double(img_grass);
-sigma_intensity = 5;
-sigma_spatial = 3;
-showBest(img_grass, 'Grass', sigma_intensity, sigma_spatial);
+
+%% Best values
+sigma_intensity = 15;
+sigma_spatial = 0.6;
+showBest(img_grass, 'Grass', sigma_intensity, sigma_spatial, 7);
 % 
 % 
 % img_honey = imread('../data/honeyCombReal.png');
