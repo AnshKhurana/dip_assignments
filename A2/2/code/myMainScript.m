@@ -17,6 +17,8 @@ tic;
 %% Barbara image
 img_barbara = load('../data/barbara.mat');
 img_barbara = im2double(img_barbara.imageOrig);
+
+%% Best values
 sigma_intensity = 15;
 sigma_spatial = 0.6;
 showBest(img_barbara, 'Barbara', sigma_intensity, sigma_spatial, 7)
@@ -38,6 +40,8 @@ showBest(img_barbara, 'Barbara', sigma_intensity, sigma_spatial, 7)
 %% Grass Image
 img_grass = imread('../data/grass.png');
 img_grass = double(img_grass);
+
+%% Best values
 sigma_intensity = 15;
 sigma_spatial = 0.6;
 showBest(img_grass, 'Grass', sigma_intensity, sigma_spatial, 7);
