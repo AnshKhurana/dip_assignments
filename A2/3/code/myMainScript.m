@@ -20,9 +20,10 @@ tic;
 
 %% Code for Q3
 
-im = imread("grass.png");
-% im = load("barbara.mat").imageOrig;
-im = double(im) ;
+% im = imread("grass.png");
+im = load('../../2/data/barbara.mat');
+im = double(im.imageOrig);
+% im = double(im) ;
 % im = myBlur(im);
 noisy_im = myGaussianNoise(im);
 h = 11.0;
