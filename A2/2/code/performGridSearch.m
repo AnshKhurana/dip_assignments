@@ -7,8 +7,9 @@ function [best_i, best_s] = performGridSearch(img, img_name, sigma_intensity_ran
             if  myRMSD(img, denoised) < old_min
                 best_i = si;
                 best_s = ss;
+                old_min = myRMSD(img, denoised);
             end
-            fprintf('For image %s sigma_spatial = %f, sigma_intensity = %f, obtained RMSD = %f\n', img_name, ss, si, myRMSD(img, denoised));
+%             fprintf('For image %s sigma_spatial = %f, sigma_intensity = %f, obtained RMSD = %f\n', img_name, ss, si, myRMSD(img, denoised));
         end
     end
 end
