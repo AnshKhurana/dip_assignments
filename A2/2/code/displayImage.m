@@ -1,10 +1,10 @@
-function displayImage(image, title_string)
+function displayImage(image, title_string, range)
     figure;
     myNumOfColors = 200;
     myColorScale = [[0:1/(myNumOfColors-1):1]', [0:1/(myNumOfColors-1):1]', [0:1/(myNumOfColors-1):1]'];
     title(title_string);
     hold on;
-    imshow(image, [0, 255]);
+    imshow(image, [0, range]);
     colormap (myColorScale);
     colorbar;
     daspect ([1 1 1]);
