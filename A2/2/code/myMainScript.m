@@ -16,10 +16,17 @@ tic;
 %  The best values for the hyperparamters were calculated using grid
 %  search, uncomment the grid search function call to perform the search.
 
+%% Hyperparameters
+%  Ranges represent the range in which grid search was performed.
 window_size = 9;
 i_range = 8:2:42;
 s_range = 0.3:0.1:1.5;
 
+%% Implementation
+%  showBest and performGridSearch internally make calls to
+% myBilateralFiltering which has the implementation of the algorithm.
+%  We use images with intensities in range [0 255] and thus the
+% corresponding RMSD values are according to this range.
 %% Barbara image
 img_barbara = load('../data/barbara.mat');
 img_barbara = im2double(img_barbara.imageOrig);

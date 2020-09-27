@@ -1,0 +1,222 @@
+
+<!DOCTYPE html
+  PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html><head>
+      <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+   <!--
+This HTML was auto-generated from MATLAB code.
+To make changes, update the MATLAB code and republish this document.
+      --><title>myMainScript</title><meta name="generator" content="MATLAB 9.6"><link rel="schema.DC" href="http://purl.org/dc/elements/1.1/"><meta name="DC.date" content="2020-09-27"><meta name="DC.source" content="myMainScript.m"><style type="text/css">
+html,body,div,span,applet,object,iframe,h1,h2,h3,h4,h5,h6,p,blockquote,pre,a,abbr,acronym,address,big,cite,code,del,dfn,em,font,img,ins,kbd,q,s,samp,small,strike,strong,sub,sup,tt,var,b,u,i,center,dl,dt,dd,ol,ul,li,fieldset,form,label,legend,table,caption,tbody,tfoot,thead,tr,th,td{margin:0;padding:0;border:0;outline:0;font-size:100%;vertical-align:baseline;background:transparent}body{line-height:1}ol,ul{list-style:none}blockquote,q{quotes:none}blockquote:before,blockquote:after,q:before,q:after{content:'';content:none}:focus{outine:0}ins{text-decoration:none}del{text-decoration:line-through}table{border-collapse:collapse;border-spacing:0}
+
+html { min-height:100%; margin-bottom:1px; }
+html body { height:100%; margin:0px; font-family:Arial, Helvetica, sans-serif; font-size:10px; color:#000; line-height:140%; background:#fff none; overflow-y:scroll; }
+html body td { vertical-align:top; text-align:left; }
+
+h1 { padding:0px; margin:0px 0px 25px; font-family:Arial, Helvetica, sans-serif; font-size:1.5em; color:#d55000; line-height:100%; font-weight:normal; }
+h2 { padding:0px; margin:0px 0px 8px; font-family:Arial, Helvetica, sans-serif; font-size:1.2em; color:#000; font-weight:bold; line-height:140%; border-bottom:1px solid #d6d4d4; display:block; }
+h3 { padding:0px; margin:0px 0px 5px; font-family:Arial, Helvetica, sans-serif; font-size:1.1em; color:#000; font-weight:bold; line-height:140%; }
+
+a { color:#005fce; text-decoration:none; }
+a:hover { color:#005fce; text-decoration:underline; }
+a:visited { color:#004aa0; text-decoration:none; }
+
+p { padding:0px; margin:0px 0px 20px; }
+img { padding:0px; margin:0px 0px 20px; border:none; }
+p img, pre img, tt img, li img, h1 img, h2 img { margin-bottom:0px; } 
+
+ul { padding:0px; margin:0px 0px 20px 23px; list-style:square; }
+ul li { padding:0px; margin:0px 0px 7px 0px; }
+ul li ul { padding:5px 0px 0px; margin:0px 0px 7px 23px; }
+ul li ol li { list-style:decimal; }
+ol { padding:0px; margin:0px 0px 20px 0px; list-style:decimal; }
+ol li { padding:0px; margin:0px 0px 7px 23px; list-style-type:decimal; }
+ol li ol { padding:5px 0px 0px; margin:0px 0px 7px 0px; }
+ol li ol li { list-style-type:lower-alpha; }
+ol li ul { padding-top:7px; }
+ol li ul li { list-style:square; }
+
+.content { font-size:1.2em; line-height:140%; padding: 20px; }
+
+pre, code { font-size:12px; }
+tt { font-size: 1.2em; }
+pre { margin:0px 0px 20px; }
+pre.codeinput { padding:10px; border:1px solid #d3d3d3; background:#f7f7f7; }
+pre.codeoutput { padding:10px 11px; margin:0px 0px 20px; color:#4c4c4c; }
+pre.error { color:red; }
+
+@media print { pre.codeinput, pre.codeoutput { word-wrap:break-word; width:100%; } }
+
+span.keyword { color:#0000FF }
+span.comment { color:#228B22 }
+span.string { color:#A020F0 }
+span.untermstring { color:#B20000 }
+span.syscmd { color:#B28C00 }
+
+.footer { width:auto; padding:10px 0px; margin:25px 0px 0px; border-top:1px dotted #878787; font-size:0.8em; line-height:140%; font-style:italic; color:#878787; text-align:left; float:none; }
+.footer p { margin:0px; }
+.footer a { color:#878787; }
+.footer a:hover { color:#878787; text-decoration:underline; }
+.footer a:visited { color:#878787; }
+
+table th { padding:7px 5px; text-align:left; vertical-align:middle; border: 1px solid #d6d4d4; font-weight:bold; }
+table td { padding:7px 5px; text-align:left; vertical-align:top; border:1px solid #d6d4d4; }
+
+
+
+
+
+  </style></head><body><div class="content"><h2>Contents</h2><div><ul><li><a href="#1">MyMainScript</a></li><li><a href="#2">CS 663: Digital Image Processing, IIT Bombay (Autumn 2020)</a></li><li><a href="#3">Grass Image</a></li><li><a href="#4">Best values</a></li><li><a href="#5">Barbara image</a></li><li><a href="#6">Best values</a></li><li><a href="#7">Honeycomb image</a></li><li><a href="#8">Best values</a></li><li><a href="#9">Summary</a></li></ul></div><h2 id="1">MyMainScript</h2><pre class="codeinput">clc; clear <span class="string">all</span>; close <span class="string">all</span>;
+warning(<span class="string">'off'</span>, <span class="string">'all'</span>);
+
+tic;
+</pre><h2 id="2">CS 663: Digital Image Processing, IIT Bombay (Autumn 2020)</h2><p>Aman Kansal, Ansh Khurana, Kushagra Juneja</p><p>Assignment 2, Question 3</p><h2 id="3">Grass Image</h2><pre class="codeinput">im = imread(<span class="string">"../data/grass.png"</span>);
+im = double(im) ;
+noisy_im = myGaussianNoise(im);
+h = 13.5;
+[mask, filtered_im] = myPatchBasedFiltering(noisy_im, h);
+showBest(<span class="string">'Grass'</span>, im, noisy_im, filtered_im, mask);
+</pre><pre class="codeoutput">RMSD of noisy image = 11.766877
+RMSD of filtered image = 7.424392
+</pre><img vspace="5" hspace="5" src="myMainScript_01.png" alt=""> <img vspace="5" hspace="5" src="myMainScript_02.png" alt=""> <img vspace="5" hspace="5" src="myMainScript_03.png" alt=""> <img vspace="5" hspace="5" src="myMainScript_04.png" alt=""> <h2 id="4">Best values</h2><pre class="codeinput"><span class="comment">% For grass image, h = 13.5</span>
+<span class="comment">% optimal rmsd = 7.35</span>
+<span class="comment">% 0.9*h -&gt; rmsd = 7.79</span>
+<span class="comment">% 1.1*h -&gt; rmsd = 7.52</span>
+
+toc;
+</pre><pre class="codeoutput">Elapsed time is 28.364374 seconds.
+</pre><h2 id="5">Barbara image</h2><pre class="codeinput">im = load(<span class="string">"../data/barbara.mat"</span>).imageOrig;
+im = double(im) ;
+im = myBlur(im);
+noisy_im = myGaussianNoise(im);
+h = 5.5;
+[mask, filtered_im] = myPatchBasedFiltering(noisy_im, h);
+showBest(<span class="string">'Barbara'</span>, im, noisy_im, filtered_im, mask);
+</pre><pre class="codeoutput error">Error: Functions cannot be indexed using {} or . indexing.
+
+Error in myMainScript (line 34)
+im = load("../data/barbara.mat").imageOrig;
+</pre><h2 id="6">Best values</h2><pre class="codeinput"><span class="comment">% Barbara, h = 5.5</span>
+<span class="comment">% optimal rmsd = 2.69</span>
+<span class="comment">% 0.9*h -&gt; rmsd = 2.74</span>
+<span class="comment">% 1.1*h -&gt; rmsd = 2.73</span>
+
+toc;
+</pre><h2 id="7">Honeycomb image</h2><pre class="codeinput">im = imread(<span class="string">"../data/honeyCombReal.png"</span>);
+im = double(im) ;
+noisy_im = myGaussianNoise(im);
+h = 15.0;
+[mask, filtered_im] = myPatchBasedFiltering(noisy_im, h);
+showBest(<span class="string">'Honeycomb'</span>, im, noisy_im, filtered_im, mask);
+</pre><h2 id="8">Best values</h2><pre class="codeinput"><span class="comment">% Honeycomb, h = 15.0</span>
+<span class="comment">% optimal rmsd = 7.54</span>
+<span class="comment">% 0.9*h -&gt; rmsd = 7.81</span>
+<span class="comment">% 1.1*h -&gt; rmsd = 7.75</span>
+
+toc;
+</pre><h2 id="9">Summary</h2><pre class="codeinput"><span class="comment">% For grass image, h = 13.5</span>
+<span class="comment">% optimal rmsd = 7.35</span>
+<span class="comment">% 0.9*h -&gt; rmsd = 7.79</span>
+<span class="comment">% 1.1*h -&gt; rmsd = 7.52</span>
+
+<span class="comment">% Barbara, h = 5.5</span>
+<span class="comment">% optimal rmsd = 2.69</span>
+<span class="comment">% 0.9*h -&gt; rmsd = 2.74</span>
+<span class="comment">% 1.1*h -&gt; rmsd = 2.73</span>
+
+<span class="comment">% Honeycomb, h = 15.0</span>
+<span class="comment">% optimal rmsd = 7.54</span>
+<span class="comment">% 0.9*h -&gt; rmsd = 7.81</span>
+<span class="comment">% 1.1*h -&gt; rmsd = 7.75</span>
+
+toc;
+</pre><p class="footer"><br><a href="https://www.mathworks.com/products/matlab/">Published with MATLAB&reg; R2019a</a><br></p></div><!--
+##### SOURCE BEGIN #####
+%% MyMainScript
+
+clc; clear all; close all;
+warning('off', 'all');
+
+tic;
+
+%%  CS 663: Digital Image Processing, IIT Bombay (Autumn 2020)
+% Aman Kansal, Ansh Khurana, Kushagra Juneja
+%
+% Assignment 2, Question 3
+
+
+%% Grass Image
+
+im = imread("../data/grass.png");
+im = double(im) ;
+noisy_im = myGaussianNoise(im);
+h = 13.5;
+[mask, filtered_im] = myPatchBasedFiltering(noisy_im, h);
+showBest('Grass', im, noisy_im, filtered_im, mask);
+
+%% Best values
+
+% For grass image, h = 13.5
+% optimal rmsd = 7.35
+% 0.9*h -> rmsd = 7.79
+% 1.1*h -> rmsd = 7.52
+
+toc;
+
+%% Barbara image
+
+im = load("../data/barbara.mat").imageOrig;
+im = double(im) ;
+im = myBlur(im);
+noisy_im = myGaussianNoise(im);
+h = 5.5;
+[mask, filtered_im] = myPatchBasedFiltering(noisy_im, h);
+showBest('Barbara', im, noisy_im, filtered_im, mask);
+
+%% Best values
+
+% Barbara, h = 5.5
+% optimal rmsd = 2.69
+% 0.9*h -> rmsd = 2.74
+% 1.1*h -> rmsd = 2.73
+
+toc;
+
+%% Honeycomb image
+
+im = imread("../data/honeyCombReal.png");
+im = double(im) ;
+noisy_im = myGaussianNoise(im);
+h = 15.0;
+[mask, filtered_im] = myPatchBasedFiltering(noisy_im, h);
+showBest('Honeycomb', im, noisy_im, filtered_im, mask);
+
+%% Best values
+
+% Honeycomb, h = 15.0
+% optimal rmsd = 7.54
+% 0.9*h -> rmsd = 7.81
+% 1.1*h -> rmsd = 7.75
+
+toc;
+
+%% Summary
+
+% For grass image, h = 13.5
+% optimal rmsd = 7.35
+% 0.9*h -> rmsd = 7.79
+% 1.1*h -> rmsd = 7.52
+
+% Barbara, h = 5.5
+% optimal rmsd = 2.69
+% 0.9*h -> rmsd = 2.74
+% 1.1*h -> rmsd = 2.73
+
+% Honeycomb, h = 15.0
+% optimal rmsd = 7.54
+% 0.9*h -> rmsd = 7.81
+% 1.1*h -> rmsd = 7.75
+
+toc;
+##### SOURCE END #####
+--></body></html>
