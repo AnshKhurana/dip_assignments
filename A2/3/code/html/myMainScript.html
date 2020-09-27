@@ -76,44 +76,46 @@ noisy_im = myGaussianNoise(im);
 h = 13.5;
 [mask, filtered_im] = myPatchBasedFiltering(noisy_im, h);
 showBest(<span class="string">'Grass'</span>, im, noisy_im, filtered_im, mask);
-</pre><pre class="codeoutput">RMSD of noisy image = 11.766877
-RMSD of filtered image = 7.424392
+</pre><pre class="codeoutput">RMSD of noisy image = 11.823007
+RMSD of filtered image = 7.438951
 </pre><img vspace="5" hspace="5" src="myMainScript_01.png" alt=""> <img vspace="5" hspace="5" src="myMainScript_02.png" alt=""> <img vspace="5" hspace="5" src="myMainScript_03.png" alt=""> <img vspace="5" hspace="5" src="myMainScript_04.png" alt=""> <h2 id="4">Best values</h2><pre class="codeinput"><span class="comment">% For grass image, h = 13.5</span>
 <span class="comment">% optimal rmsd = 7.35</span>
 <span class="comment">% 0.9*h -&gt; rmsd = 7.79</span>
 <span class="comment">% 1.1*h -&gt; rmsd = 7.52</span>
 
 toc;
-</pre><pre class="codeoutput">Elapsed time is 28.364374 seconds.
-</pre><h2 id="5">Barbara image</h2><pre class="codeinput">im = load(<span class="string">"../data/barbara.mat"</span>).imageOrig;
-im = double(im) ;
+</pre><pre class="codeoutput">Elapsed time is 26.717334 seconds.
+</pre><h2 id="5">Barbara image</h2><pre class="codeinput">im = load(<span class="string">"../data/barbara.mat"</span>);
+im = double(im.imageOrig) ;
 im = myBlur(im);
 noisy_im = myGaussianNoise(im);
 h = 5.5;
 [mask, filtered_im] = myPatchBasedFiltering(noisy_im, h);
 showBest(<span class="string">'Barbara'</span>, im, noisy_im, filtered_im, mask);
-</pre><pre class="codeoutput error">Error: Functions cannot be indexed using {} or . indexing.
-
-Error in myMainScript (line 34)
-im = load("../data/barbara.mat").imageOrig;
-</pre><h2 id="6">Best values</h2><pre class="codeinput"><span class="comment">% Barbara, h = 5.5</span>
+</pre><pre class="codeoutput">RMSD of noisy image = 4.731886
+RMSD of filtered image = 2.707634
+</pre><img vspace="5" hspace="5" src="myMainScript_05.png" alt=""> <img vspace="5" hspace="5" src="myMainScript_06.png" alt=""> <img vspace="5" hspace="5" src="myMainScript_07.png" alt=""> <img vspace="5" hspace="5" src="myMainScript_08.png" alt=""> <h2 id="6">Best values</h2><pre class="codeinput"><span class="comment">% Barbara, h = 5.5</span>
 <span class="comment">% optimal rmsd = 2.69</span>
 <span class="comment">% 0.9*h -&gt; rmsd = 2.74</span>
 <span class="comment">% 1.1*h -&gt; rmsd = 2.73</span>
 
 toc;
+</pre><pre class="codeoutput">Elapsed time is 118.812019 seconds.
 </pre><h2 id="7">Honeycomb image</h2><pre class="codeinput">im = imread(<span class="string">"../data/honeyCombReal.png"</span>);
 im = double(im) ;
 noisy_im = myGaussianNoise(im);
 h = 15.0;
 [mask, filtered_im] = myPatchBasedFiltering(noisy_im, h);
 showBest(<span class="string">'Honeycomb'</span>, im, noisy_im, filtered_im, mask);
-</pre><h2 id="8">Best values</h2><pre class="codeinput"><span class="comment">% Honeycomb, h = 15.0</span>
+</pre><pre class="codeoutput">RMSD of noisy image = 12.690202
+RMSD of filtered image = 7.603023
+</pre><img vspace="5" hspace="5" src="myMainScript_09.png" alt=""> <img vspace="5" hspace="5" src="myMainScript_10.png" alt=""> <img vspace="5" hspace="5" src="myMainScript_11.png" alt=""> <img vspace="5" hspace="5" src="myMainScript_12.png" alt=""> <img vspace="5" hspace="5" src="myMainScript_13.png" alt=""> <img vspace="5" hspace="5" src="myMainScript_14.png" alt=""> <h2 id="8">Best values</h2><pre class="codeinput"><span class="comment">% Honeycomb, h = 15.0</span>
 <span class="comment">% optimal rmsd = 7.54</span>
 <span class="comment">% 0.9*h -&gt; rmsd = 7.81</span>
 <span class="comment">% 1.1*h -&gt; rmsd = 7.75</span>
 
 toc;
+</pre><pre class="codeoutput">Elapsed time is 212.298085 seconds.
 </pre><h2 id="9">Summary</h2><pre class="codeinput"><span class="comment">% For grass image, h = 13.5</span>
 <span class="comment">% optimal rmsd = 7.35</span>
 <span class="comment">% 0.9*h -&gt; rmsd = 7.79</span>
@@ -130,6 +132,7 @@ toc;
 <span class="comment">% 1.1*h -&gt; rmsd = 7.75</span>
 
 toc;
+</pre><pre class="codeoutput">Elapsed time is 212.305369 seconds.
 </pre><p class="footer"><br><a href="https://www.mathworks.com/products/matlab/">Published with MATLAB&reg; R2019a</a><br></p></div><!--
 ##### SOURCE BEGIN #####
 %% MyMainScript
@@ -165,8 +168,8 @@ toc;
 
 %% Barbara image
 
-im = load("../data/barbara.mat").imageOrig;
-im = double(im) ;
+im = load("../data/barbara.mat");
+im = double(im.imageOrig) ;
 im = myBlur(im);
 noisy_im = myGaussianNoise(im);
 h = 5.5;
