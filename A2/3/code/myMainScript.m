@@ -10,23 +10,29 @@ tic;
 %
 % Assignment 2
 
-% For grass image, h = 13.0 (with 1.33, blur)
+% For grass image, h = 13.5
+% Noisy rmsd = 11.77, optimal rmsd = 7.35
+% 0.9*h -> rmsd = 7.79
+% 1.1*h -> rmsd = 7.52
 
-% Barbara, h = 5.5 (with 1.33, blur)
+% Barbara, h = 5.5
+% Noisy rmsd = 4.73, optimal rmsd = 2.69
+% 0.9*h -> rmsd = 2.74
+% 1.1*h -> rmsd = 2.73
 
-% Honeycomb, h=14.5 (with 1.33, blur)
-
-% Looks like sigma = 1.33 is quite low, use 2.0 once instead.
+% Honeycomb, h = 15.0
+% Noisy rmsd = 12.69, optimal rmsd = 7.54
+% 0.9*h -> rmsd = 7.81
+% 1.1*h -> rmsd = 7.75
 
 %% Code for Q3
 
-% im = imread("grass.png");
-im = load('../../2/data/barbara.mat');
-im = double(im.imageOrig);
-% im = double(im) ;
+im = imread("honeyCombReal.png");
+% im = load("barbara.mat").imageOrig;
+im = double(im) ;
 % im = myBlur(im);
 noisy_im = myGaussianNoise(im);
-h = 11.0;
+h = 16.5;
 [mask, filtered_im] = myPatchBasedFiltering(noisy_im, h);
 noisy_rmsd = myRMSD(im, noisy_im) ;
 rmsd = myRMSD(im, filtered_im) ;
