@@ -5,6 +5,7 @@ function displayImage(image, title_string, range)
     title(title_string);
     hold on;
     imshow(image, [0, range]);
+    hold on;
     colormap (myColorScale);
     colorbar;
     daspect ([1 1 1]);

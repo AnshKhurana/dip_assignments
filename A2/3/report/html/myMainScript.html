@@ -6,7 +6,7 @@
    <!--
 This HTML was auto-generated from MATLAB code.
 To make changes, update the MATLAB code and republish this document.
-      --><title>myMainScript</title><meta name="generator" content="MATLAB 9.6"><link rel="schema.DC" href="http://purl.org/dc/elements/1.1/"><meta name="DC.date" content="2020-09-27"><meta name="DC.source" content="myMainScript.m"><style type="text/css">
+      --><title>myMainScript</title><meta name="generator" content="MATLAB 9.6"><link rel="schema.DC" href="http://purl.org/dc/elements/1.1/"><meta name="DC.date" content="2020-09-29"><meta name="DC.source" content="myMainScript.m"><style type="text/css">
 html,body,div,span,applet,object,iframe,h1,h2,h3,h4,h5,h6,p,blockquote,pre,a,abbr,acronym,address,big,cite,code,del,dfn,em,font,img,ins,kbd,q,s,samp,small,strike,strong,sub,sup,tt,var,b,u,i,center,dl,dt,dd,ol,ul,li,fieldset,form,label,legend,table,caption,tbody,tfoot,thead,tr,th,td{margin:0;padding:0;border:0;outline:0;font-size:100%;vertical-align:baseline;background:transparent}body{line-height:1}ol,ul{list-style:none}blockquote,q{quotes:none}blockquote:before,blockquote:after,q:before,q:after{content:'';content:none}:focus{outine:0}ins{text-decoration:none}del{text-decoration:line-through}table{border-collapse:collapse;border-spacing:0}
 
 html { min-height:100%; margin-bottom:1px; }
@@ -76,15 +76,10 @@ noisy_im = myGaussianNoise(im);
 h = 13.5;
 [mask, filtered_im] = myPatchBasedFiltering(noisy_im, h);
 showBest(<span class="string">'Grass'</span>, im, noisy_im, filtered_im, mask);
-</pre><pre class="codeoutput">RMSD of noisy image = 11.823007
-RMSD of filtered image = 7.438951
-</pre><img vspace="5" hspace="5" src="myMainScript_01.png" alt=""> <img vspace="5" hspace="5" src="myMainScript_02.png" alt=""> <img vspace="5" hspace="5" src="myMainScript_03.png" alt=""> <img vspace="5" hspace="5" src="myMainScript_04.png" alt=""> <h2 id="4">Best values</h2><pre class="codeinput"><span class="comment">% For grass image, h = 13.5</span>
-<span class="comment">% optimal rmsd = 7.35</span>
-<span class="comment">% 0.9*h -&gt; rmsd = 7.79</span>
-<span class="comment">% 1.1*h -&gt; rmsd = 7.52</span>
-
-toc;
-</pre><pre class="codeoutput">Elapsed time is 26.717334 seconds.
+</pre><pre class="codeoutput">RMSD of noisy image = 11.926067
+RMSD of filtered image = 7.531174
+</pre><img vspace="5" hspace="5" src="myMainScript_01.png" alt=""> <img vspace="5" hspace="5" src="myMainScript_02.png" alt=""> <img vspace="5" hspace="5" src="myMainScript_03.png" alt=""> <img vspace="5" hspace="5" src="myMainScript_04.png" alt=""> <h2 id="4">Best values</h2><p>For grass image, h = 13.5 optimal rmsd = 7.35 0.9*h -&gt; rmsd = 7.79 1.1*h -&gt; rmsd = 7.52</p><pre class="codeinput">toc;
+</pre><pre class="codeoutput">Elapsed time is 28.230242 seconds.
 </pre><h2 id="5">Barbara image</h2><pre class="codeinput">im = load(<span class="string">"../data/barbara.mat"</span>);
 im = double(im.imageOrig) ;
 im = myBlur(im);
@@ -92,47 +87,20 @@ noisy_im = myGaussianNoise(im);
 h = 5.5;
 [mask, filtered_im] = myPatchBasedFiltering(noisy_im, h);
 showBest(<span class="string">'Barbara'</span>, im, noisy_im, filtered_im, mask);
-</pre><pre class="codeoutput">RMSD of noisy image = 4.731886
-RMSD of filtered image = 2.707634
-</pre><img vspace="5" hspace="5" src="myMainScript_05.png" alt=""> <img vspace="5" hspace="5" src="myMainScript_06.png" alt=""> <img vspace="5" hspace="5" src="myMainScript_07.png" alt=""> <img vspace="5" hspace="5" src="myMainScript_08.png" alt=""> <h2 id="6">Best values</h2><pre class="codeinput"><span class="comment">% Barbara, h = 5.5</span>
-<span class="comment">% optimal rmsd = 2.69</span>
-<span class="comment">% 0.9*h -&gt; rmsd = 2.74</span>
-<span class="comment">% 1.1*h -&gt; rmsd = 2.73</span>
-
-toc;
-</pre><pre class="codeoutput">Elapsed time is 118.812019 seconds.
+</pre><pre class="codeoutput">RMSD of noisy image = 4.726479
+RMSD of filtered image = 2.679503
+</pre><img vspace="5" hspace="5" src="myMainScript_05.png" alt=""> <img vspace="5" hspace="5" src="myMainScript_06.png" alt=""> <img vspace="5" hspace="5" src="myMainScript_07.png" alt=""> <img vspace="5" hspace="5" src="myMainScript_08.png" alt=""> <h2 id="6">Best values</h2><p>Barbara, h = 5.5 optimal rmsd = 2.69 0.9*h -&gt; rmsd = 2.74 1.1*h -&gt; rmsd = 2.73</p><pre class="codeinput">toc;
+</pre><pre class="codeoutput">Elapsed time is 118.834981 seconds.
 </pre><h2 id="7">Honeycomb image</h2><pre class="codeinput">im = imread(<span class="string">"../data/honeyCombReal.png"</span>);
 im = double(im) ;
 noisy_im = myGaussianNoise(im);
 h = 15.0;
 [mask, filtered_im] = myPatchBasedFiltering(noisy_im, h);
 showBest(<span class="string">'Honeycomb'</span>, im, noisy_im, filtered_im, mask);
-</pre><pre class="codeoutput">RMSD of noisy image = 12.690202
-RMSD of filtered image = 7.603023
-</pre><img vspace="5" hspace="5" src="myMainScript_09.png" alt=""> <img vspace="5" hspace="5" src="myMainScript_10.png" alt=""> <img vspace="5" hspace="5" src="myMainScript_11.png" alt=""> <img vspace="5" hspace="5" src="myMainScript_12.png" alt=""> <img vspace="5" hspace="5" src="myMainScript_13.png" alt=""> <img vspace="5" hspace="5" src="myMainScript_14.png" alt=""> <h2 id="8">Best values</h2><pre class="codeinput"><span class="comment">% Honeycomb, h = 15.0</span>
-<span class="comment">% optimal rmsd = 7.54</span>
-<span class="comment">% 0.9*h -&gt; rmsd = 7.81</span>
-<span class="comment">% 1.1*h -&gt; rmsd = 7.75</span>
-
-toc;
-</pre><pre class="codeoutput">Elapsed time is 212.298085 seconds.
-</pre><h2 id="9">Summary</h2><pre class="codeinput"><span class="comment">% For grass image, h = 13.5</span>
-<span class="comment">% optimal rmsd = 7.35</span>
-<span class="comment">% 0.9*h -&gt; rmsd = 7.79</span>
-<span class="comment">% 1.1*h -&gt; rmsd = 7.52</span>
-
-<span class="comment">% Barbara, h = 5.5</span>
-<span class="comment">% optimal rmsd = 2.69</span>
-<span class="comment">% 0.9*h -&gt; rmsd = 2.74</span>
-<span class="comment">% 1.1*h -&gt; rmsd = 2.73</span>
-
-<span class="comment">% Honeycomb, h = 15.0</span>
-<span class="comment">% optimal rmsd = 7.54</span>
-<span class="comment">% 0.9*h -&gt; rmsd = 7.81</span>
-<span class="comment">% 1.1*h -&gt; rmsd = 7.75</span>
-
-toc;
-</pre><pre class="codeoutput">Elapsed time is 212.305369 seconds.
+</pre><pre class="codeoutput">RMSD of noisy image = 12.697844
+RMSD of filtered image = 7.589360
+</pre><img vspace="5" hspace="5" src="myMainScript_09.png" alt=""> <img vspace="5" hspace="5" src="myMainScript_10.png" alt=""> <img vspace="5" hspace="5" src="myMainScript_11.png" alt=""> <img vspace="5" hspace="5" src="myMainScript_12.png" alt=""> <h2 id="8">Best values</h2><p>Honeycomb, h = 15.0 optimal rmsd = 7.54 0.9*h -&gt; rmsd = 7.81 1.1*h -&gt; rmsd = 7.75</p><h2 id="9">Summary</h2><p>For grass image, h = 13.5 optimal rmsd = 7.35 0.9*h -&gt; rmsd = 7.79 1.1*h -&gt; rmsd = 7.52</p><p>Barbara, h = 5.5 optimal rmsd = 2.69 0.9*h -&gt; rmsd = 2.74 1.1*h -&gt; rmsd = 2.73</p><p>Honeycomb, h = 15.0 optimal rmsd = 7.54 0.9*h -&gt; rmsd = 7.81 1.1*h -&gt; rmsd = 7.75</p><pre class="codeinput">toc;
+</pre><pre class="codeoutput">Elapsed time is 210.540812 seconds.
 </pre><p class="footer"><br><a href="https://www.mathworks.com/products/matlab/">Published with MATLAB&reg; R2019a</a><br></p></div><!--
 ##### SOURCE BEGIN #####
 %% MyMainScript
@@ -158,7 +126,6 @@ h = 13.5;
 showBest('Grass', im, noisy_im, filtered_im, mask);
 
 %% Best values
-
 % For grass image, h = 13.5
 % optimal rmsd = 7.35
 % 0.9*h -> rmsd = 7.79
@@ -177,7 +144,6 @@ h = 5.5;
 showBest('Barbara', im, noisy_im, filtered_im, mask);
 
 %% Best values
-
 % Barbara, h = 5.5
 % optimal rmsd = 2.69
 % 0.9*h -> rmsd = 2.74
@@ -195,26 +161,24 @@ h = 15.0;
 showBest('Honeycomb', im, noisy_im, filtered_im, mask);
 
 %% Best values
-
 % Honeycomb, h = 15.0
 % optimal rmsd = 7.54
 % 0.9*h -> rmsd = 7.81
 % 1.1*h -> rmsd = 7.75
 
-toc;
+
 
 %% Summary
-
 % For grass image, h = 13.5
 % optimal rmsd = 7.35
 % 0.9*h -> rmsd = 7.79
 % 1.1*h -> rmsd = 7.52
-
+%
 % Barbara, h = 5.5
 % optimal rmsd = 2.69
 % 0.9*h -> rmsd = 2.74
 % 1.1*h -> rmsd = 2.73
-
+%
 % Honeycomb, h = 15.0
 % optimal rmsd = 7.54
 % 0.9*h -> rmsd = 7.81

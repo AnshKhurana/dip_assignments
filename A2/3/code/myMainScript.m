@@ -61,7 +61,7 @@ showBest('Honeycomb', im, noisy_im, filtered_im, mask);
 % 0.9*h -> rmsd = 7.81
 % 1.1*h -> rmsd = 7.75
 
-toc;
+
 
 %% Summary
 % For grass image, h = 13.5
