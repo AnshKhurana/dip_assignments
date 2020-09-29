@@ -29,14 +29,14 @@ showBest('Grass', im, noisy_im, filtered_im, mask);
 toc;
 
 %% Barbara image
-
-iml = load("../data/barbara.mat");
-im = double(iml.imageOrig) ;
-im = myBlur(im);
-noisy_im = myGaussianNoise(im);
-h = 5.5;
-[mask, filtered_im] = myPatchBasedFiltering(noisy_im, h);
-showBest('Barbara', im, noisy_im, filtered_im, mask);
+% 
+% iml = load("../data/barbara.mat");
+% im = double(iml.imageOrig) ;
+% im = myBlur(im);
+% noisy_im = myGaussianNoise(im);
+% h = 5.5;
+% [mask, filtered_im] = myPatchBasedFiltering(noisy_im, h);
+% showBest('Barbara', im, noisy_im, filtered_im, mask);
 
 %% Best values
 % Barbara, h = 5.5
