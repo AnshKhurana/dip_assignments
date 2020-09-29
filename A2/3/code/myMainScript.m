@@ -21,7 +21,6 @@ h = 13.5;
 showBest('Grass', im, noisy_im, filtered_im, mask);
 
 %% Best values
-
 % For grass image, h = 13.5
 % optimal rmsd = 7.35
 % 0.9*h -> rmsd = 7.79
@@ -40,7 +39,6 @@ h = 5.5;
 showBest('Barbara', im, noisy_im, filtered_im, mask);
 
 %% Best values
-
 % Barbara, h = 5.5
 % optimal rmsd = 2.69
 % 0.9*h -> rmsd = 2.74
@@ -58,7 +56,6 @@ h = 15.0;
 showBest('Honeycomb', im, noisy_im, filtered_im, mask);
 
 %% Best values
-
 % Honeycomb, h = 15.0
 % optimal rmsd = 7.54
 % 0.9*h -> rmsd = 7.81
@@ -67,17 +64,16 @@ showBest('Honeycomb', im, noisy_im, filtered_im, mask);
 toc;
 
 %% Summary
-
 % For grass image, h = 13.5
 % optimal rmsd = 7.35
 % 0.9*h -> rmsd = 7.79
 % 1.1*h -> rmsd = 7.52
-
+%
 % Barbara, h = 5.5
 % optimal rmsd = 2.69
 % 0.9*h -> rmsd = 2.74
 % 1.1*h -> rmsd = 2.73
-
+%
 % Honeycomb, h = 15.0
 % optimal rmsd = 7.54
 % 0.9*h -> rmsd = 7.81
