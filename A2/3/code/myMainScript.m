@@ -30,8 +30,8 @@ toc;
 
 %% Barbara image
 
-im = load("../data/barbara.mat");
-im = double(im.imageOrig) ;
+iml = load("../data/barbara.mat");
+im = double(iml.imageOrig) ;
 im = myBlur(im);
 noisy_im = myGaussianNoise(im);
 h = 5.5;
