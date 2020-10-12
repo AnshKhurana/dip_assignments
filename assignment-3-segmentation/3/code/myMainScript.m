@@ -7,53 +7,43 @@ warning('off', 'all');
 
 tic;
 
-% im = imread('flower.jpg');
-% n = size(im,1);
-% m = size(im,2);
-% [X,Y] = meshgrid(1:m,1:n);
-% features = cat(3, im, X, Y);
-% 
-% L = imsegkmeans(features,3,'NormalizeInput',true);
-% figure;
-% imshow(L, [1 3]);
-% mask = (L==3);
-% dist = sqrt((X-m/2).^2 + (Y-n/2).^2);
-% mask((dist<30)) = 1;
-% mask((dist>100)) = 0;
-% 
-% figure;
-% imshow(mask, [0 1]);
+%% Algorithm for foreground mask
+% Use K means segmentation with features as RGB and spatial coordinates.
+% I have used it with K=3 for both images. Then identify the label given 
+% to maximum part of the object in foreground, lets say L. Now, first define a mask = 1
+% if the pixel belongs to L, or else mask = 0. Currently the mask will have
+% many connected components. So now, use 'bwareafilt' function of matlab
+% to filter out the connected components with lesser pixels. Now, we will
+% have only one connected component in the mask which actually represents the
+% foreground object. But the mask will have some holes in it corresponding
+% to some pixels which got labelled incorrectly by our segmentation
+% algorithm. So now, use matlab function 'imfill' to fill these holes and
+% get the correct mask.
 
-% --------------
+%% Bird image
+% We have downsampled the image by a factor of 2 on both axes. 
+% Hence, the value of alpha used for this is also halved i.e. alpha = 20.
 
-im = imread('bird.jpg');
+%% Code for bird image
+im = imread('../data/bird.jpg');
 im = im(1:2:end, 1:2:end, :);
+mask = myForegroundMask(im, 2);
+im = double(im);
+displayMask(im, mask);
+mySpatiallyVaryingKernel(im, mask, 20);
 
-n = size(im,1);
-m = size(im,2);
-[X,Y] = meshgrid(1:m,1:n);
-features = cat(3, im, X, Y);
-L = imsegkmeans(features,3,'NormalizeInput',true);
-mask = (L==2);
-mask = bwareafilt(mask, 1);
-mask = imfill(mask,'holes');
-figure;
-imshow(mask);
+toc;
 
+%% Flower image
+% We have kept the image intact i.e. no downsampling. 
+% Hence, alpha = 20.
 
-% --------------
+%% Code for Flower image
 
-im = imread('flower.jpg');
+im = imread('../data/flower.jpg');
+mask = myForegroundMask(im, 3);
+im = double(im) ;
+displayMask(im, mask);
+mySpatiallyVaryingKernel(im, mask, 20);
 
-n = size(im,1);
-m = size(im,2);
-[X,Y] = meshgrid(1:m,1:n);
-features = cat(3, im, X, Y);
-L = imsegkmeans(features,3,'NormalizeInput',true);
-mask = (L==3);
-mask = bwareafilt(mask, 1);
-mask = imfill(mask,'holes');
-figure;
-imshow(mask);
-
-% toc;
+toc;
