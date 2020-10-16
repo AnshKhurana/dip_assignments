@@ -4,11 +4,14 @@ function displayImage(image, title_string, minI, maxI)
     figure;
     title(title_string);
     hold on;
-    imshow(image, [minI, maxI]);
-    hold on;
+    
     daspect ([1 1 1]);
     axis tight;
+    imshow(image, [minI, maxI]);
+    hold on;
+    
     fig = gcf;
     truesize(fig,[400 400]);
     set(gcf,'units','centimeters','position',[0 0 16 16]);
+    hold off;
 end

@@ -6,7 +6,8 @@ function mySpatiallyVaryingKernel(im, mask, alpha)
     A = 0.2:0.2:1;
     for i=1:length(A)
         mask = fspecial('disk',A(i)*alpha);
-        displayImageJet(mask, sprintf('Kernel at distance = %.1f*alpha', A(i)), 0, max(mask(:)));
+        displayImageKernel(mask, sprintf('Kernel at distance = %.1f*alpha', A(i)), 0, max(mask(:)));
+%         displayImage(mask, sprintf('Kernel at distance = %.1f*alpha', A(i)), 0, max(mask(:)));
     end
     
     out = im;

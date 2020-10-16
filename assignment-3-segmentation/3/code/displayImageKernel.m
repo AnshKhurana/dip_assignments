@@ -1,4 +1,4 @@
-function displayImageJet(image, title_string, minI, maxI)
+function displayImageKernel(image, title_string, minI, maxI)
     figure;
     myNumOfColors = 200;
     myColorScale = [[0:1/(myNumOfColors-1):1]', [0:1/(myNumOfColors-1):1]', [0:1/(myNumOfColors-1):1]'];
@@ -7,10 +7,9 @@ function displayImageJet(image, title_string, minI, maxI)
     imshow(image, [minI, maxI]);
     hold on;
     colormap (myColorScale);
-    colormap jet;
+    colorbar;
     daspect ([1 1 1]);
     axis tight;
-    colorbar;
     fig = gcf;
     truesize(fig,[400 400]);
     set(gcf,'units','centimeters','position',[0 0 16 16]);
