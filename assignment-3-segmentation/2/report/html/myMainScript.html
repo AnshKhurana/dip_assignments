@@ -6,7 +6,7 @@
    <!--
 This HTML was auto-generated from MATLAB code.
 To make changes, update the MATLAB code and republish this document.
-      --><title>myMainScript</title><meta name="generator" content="MATLAB 9.6"><link rel="schema.DC" href="http://purl.org/dc/elements/1.1/"><meta name="DC.date" content="2020-10-15"><meta name="DC.source" content="myMainScript.m"><style type="text/css">
+      --><title>myMainScript</title><meta name="generator" content="MATLAB 9.6"><link rel="schema.DC" href="http://purl.org/dc/elements/1.1/"><meta name="DC.date" content="2020-10-16"><meta name="DC.source" content="myMainScript.m"><style type="text/css">
 html,body,div,span,applet,object,iframe,h1,h2,h3,h4,h5,h6,p,blockquote,pre,a,abbr,acronym,address,big,cite,code,del,dfn,em,font,img,ins,kbd,q,s,samp,small,strike,strong,sub,sup,tt,var,b,u,i,center,dl,dt,dd,ol,ul,li,fieldset,form,label,legend,table,caption,tbody,tfoot,thead,tr,th,td{margin:0;padding:0;border:0;outline:0;font-size:100%;vertical-align:baseline;background:transparent}body{line-height:1}ol,ul{list-style:none}blockquote,q{quotes:none}blockquote:before,blockquote:after,q:before,q:after{content:'';content:none}:focus{outine:0}ins{text-decoration:none}del{text-decoration:line-through}table{border-collapse:collapse;border-spacing:0}
 
 html { min-height:100%; margin-bottom:1px; }
@@ -72,28 +72,35 @@ warning(<span class="string">'off'</span>, <span class="string">'all'</span>);
 tic;
 </pre><h2 id="2">CS 663: Digital Image Processing, IIT Bombay (Autumn 2020)</h2><p>Aman Kansal, Ansh Khurana, Kushagra Juneja</p><p>Assignment 3</p><h2 id="3">Q2</h2><pre>Mean Shift Segmentation
 run_per_img(), runs the transformations and calls myMeanShiftSegmentation
-for each image.</pre><h2 id="4">baboon image</h2><pre class="codeinput">img = imread(<span class="string">'../data/baboonColor.png'</span>);
+for each image.
+Code takes more than 5 minutes to run so the results have been saved in images/</pre><h2 id="4">baboon image</h2><pre class="codeinput">img = imread(<span class="string">'../data/baboonColor.png'</span>);
 h_s = 30;
 h_r = 40;
 runPerImage(img, h_s, h_r, 20, <span class="string">'baboon'</span>);
 toc;
-</pre><pre class="codeoutput">Chosen parameter for spatial bandwidth h_s = 30.000000, intensity bandwidth h_r = 40.000000, number of iterations = 20
-Elapsed time is 173.588621 seconds.
+</pre><pre class="codeoutput">Chosen parameter for spatial bandwidth h_s = 30.000000
+ intensity bandwidth h_r = 40.000000
+ number of iterations = 20
+Elapsed time is 177.438646 seconds.
 </pre><img vspace="5" hspace="5" src="myMainScript_01.png" alt=""> <img vspace="5" hspace="5" src="myMainScript_02.png" alt=""> <img vspace="5" hspace="5" src="myMainScript_03.png" alt=""> <h2 id="5">bird image</h2><pre class="codeinput">img = imread(<span class="string">'../data/bird.jpg'</span>);
 h_s = 30;
 h_r = 50;
 runPerImage(img, h_s, h_r, 20, <span class="string">'bird'</span>);
 toc;
-</pre><pre class="codeoutput">Chosen parameter for spatial bandwidth h_s = 30.000000, intensity bandwidth h_r = 50.000000, number of iterations = 20
-Elapsed time is 790.006378 seconds.
-</pre><img vspace="5" hspace="5" src="myMainScript_04.png" alt=""> <img vspace="5" hspace="5" src="myMainScript_05.png" alt=""> <img vspace="5" hspace="5" src="myMainScript_06.png" alt=""> <img vspace="5" hspace="5" src="myMainScript_07.png" alt=""> <h2 id="6">flower image</h2><pre class="codeinput">img = imread(<span class="string">'../data/flower.jpg'</span>);
+</pre><pre class="codeoutput">Chosen parameter for spatial bandwidth h_s = 30.000000
+ intensity bandwidth h_r = 50.000000
+ number of iterations = 20
+Elapsed time is 749.212718 seconds.
+</pre><img vspace="5" hspace="5" src="myMainScript_04.png" alt=""> <img vspace="5" hspace="5" src="myMainScript_05.png" alt=""> <img vspace="5" hspace="5" src="myMainScript_06.png" alt=""> <h2 id="6">flower image</h2><pre class="codeinput">img = imread(<span class="string">'../data/flower.jpg'</span>);
 h_s = 30;
 h_r = 40;
 runPerImage(img, h_s, h_r, 20, <span class="string">'flower'</span>);
 toc;
-</pre><pre class="codeoutput">Chosen parameter for spatial bandwidth h_s = 30.000000, intensity bandwidth h_r = 40.000000, number of iterations = 20
-Elapsed time is 872.095551 seconds.
-</pre><img vspace="5" hspace="5" src="myMainScript_08.png" alt=""> <img vspace="5" hspace="5" src="myMainScript_09.png" alt=""> <img vspace="5" hspace="5" src="myMainScript_10.png" alt=""> <p class="footer"><br><a href="https://www.mathworks.com/products/matlab/">Published with MATLAB&reg; R2019a</a><br></p></div><!--
+</pre><pre class="codeoutput">Chosen parameter for spatial bandwidth h_s = 30.000000
+ intensity bandwidth h_r = 40.000000
+ number of iterations = 20
+Elapsed time is 830.487289 seconds.
+</pre><img vspace="5" hspace="5" src="myMainScript_07.png" alt=""> <img vspace="5" hspace="5" src="myMainScript_08.png" alt=""> <img vspace="5" hspace="5" src="myMainScript_09.png" alt=""> <p class="footer"><br><a href="https://www.mathworks.com/products/matlab/">Published with MATLAB&reg; R2019a</a><br></p></div><!--
 ##### SOURCE BEGIN #####
 %% MyMainScript
 
@@ -111,6 +118,7 @@ tic;
 %  Mean Shift Segmentation
 %  run_per_img(), runs the transformations and calls myMeanShiftSegmentation
 % for each image.
+%  Code takes more than 5 minutes to run so the results have been saved in images/
 
 %% baboon image
 img = imread('../data/baboonColor.png');

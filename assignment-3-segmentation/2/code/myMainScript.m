@@ -14,6 +14,7 @@ tic;
 %  Mean Shift Segmentation
 %  run_per_img(), runs the transformations and calls myMeanShiftSegmentation
 % for each image.
+%  Code takes more than 5 minutes to run so the results have been saved in images/
 
 %% baboon image
 img = imread('../data/baboonColor.png');
