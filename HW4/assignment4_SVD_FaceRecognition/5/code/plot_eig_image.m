@@ -53,7 +53,7 @@ function [ ] = plot_eig_image( sample_image_path )
     eigen_coefficients = transpose(eigen_vectors)*sample_image_ms;
     
     klist = [2,10,20,50,75,100,125,150,175];
-    
+    f = figure;
     for i = 1:9
         k = klist(i);
         reconstructed_image = eigen_vectors(:,1:k)*eigen_coefficients(1:k) + X_mean;
@@ -61,8 +61,25 @@ function [ ] = plot_eig_image( sample_image_path )
         
         subplot(3,3,i);
         imshow(reconstructed_image);
-        title(sprintf('k = %d',k));
+        title(sprintf('s1, img1, k = %d',k));
+    
     end
+    
+    f = figure;
+    for i = 1:25
+        evec = eigen_vectors(:,i);
+        [min_evec, min_evec_i] = min(evec);
+        evec = evec - min_evec;
+        [max_evec, max_evec_i] = max(evec);
+        evec = evec/max_evec;
+        eigenface = reshape(evec,[112,92]);
+        
+        subplot(5,5,i);
+        imshow(eigenface);
+        title(sprintf('e%d',i));
+    end
+    
+        
 
 end
 
