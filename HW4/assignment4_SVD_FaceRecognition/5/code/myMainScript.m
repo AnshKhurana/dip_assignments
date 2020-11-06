@@ -1,5 +1,6 @@
 %% Q5
-% Eigenfaces for various k's are as shown below
+% Reconstructed image for various k's are as shown below (image 1)
+% Eigenfaces for first 25 eigenvectors are shown (image 2)
 tic;
 
 image_path = '..\\..\\..\\ORL\\s1\\1.pgm';

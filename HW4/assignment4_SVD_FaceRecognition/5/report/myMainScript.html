@@ -6,7 +6,7 @@
    <!--
 This HTML was auto-generated from MATLAB code.
 To make changes, update the MATLAB code and republish this document.
-      --><title>Q5</title><meta name="generator" content="MATLAB 8.6"><link rel="schema.DC" href="http://purl.org/dc/elements/1.1/"><meta name="DC.date" content="2020-11-05"><meta name="DC.source" content="myMainScript.m"><style type="text/css">
+      --><title>Q5</title><meta name="generator" content="MATLAB 8.6"><link rel="schema.DC" href="http://purl.org/dc/elements/1.1/"><meta name="DC.date" content="2020-11-06"><meta name="DC.source" content="myMainScript.m"><style type="text/css">
 html,body,div,span,applet,object,iframe,h1,h2,h3,h4,h5,h6,p,blockquote,pre,a,abbr,acronym,address,big,cite,code,del,dfn,em,font,img,ins,kbd,q,s,samp,small,strike,strong,sub,sup,tt,var,b,u,i,center,dl,dt,dd,ol,ul,li,fieldset,form,label,legend,table,caption,tbody,tfoot,thead,tr,th,td{margin:0;padding:0;border:0;outline:0;font-size:100%;vertical-align:baseline;background:transparent}body{line-height:1}ol,ul{list-style:none}blockquote,q{quotes:none}blockquote:before,blockquote:after,q:before,q:after{content:'';content:none}:focus{outine:0}ins{text-decoration:none}del{text-decoration:line-through}table{border-collapse:collapse;border-spacing:0}
 
 html { min-height:100%; margin-bottom:1px; }
@@ -66,18 +66,19 @@ table td { padding:7px 5px; text-align:left; vertical-align:top; border:1px soli
 
 
 
-  </style></head><body><div class="content"><h1>Q5</h1><p>Eigenfaces for various k's are as shown below</p><pre class="codeinput">tic;
+  </style></head><body><div class="content"><h1>Q5</h1><p>Reconstructed image for various k's are as shown below (image 1) Eigenfaces for first 25 eigenvectors are shown (image 2)</p><pre class="codeinput">tic;
 
 image_path = <span class="string">'..\\..\\..\\ORL\\s1\\1.pgm'</span>;
 plot_eig_image(image_path);
 
 
 toc;
-</pre><pre class="codeoutput">Elapsed time is 1.054480 seconds.
-</pre><img vspace="5" hspace="5" src="myMainScript_01.png" style="width:560px;height:420px;" alt=""> <p class="footer"><br><a href="http://www.mathworks.com/products/matlab/">Published with MATLAB&reg; R2015b</a><br></p></div><!--
+</pre><pre class="codeoutput">Elapsed time is 2.112519 seconds.
+</pre><img vspace="5" hspace="5" src="myMainScript_01.png" style="width:560px;height:420px;" alt=""> <img vspace="5" hspace="5" src="myMainScript_02.png" style="width:560px;height:420px;" alt=""> <p class="footer"><br><a href="http://www.mathworks.com/products/matlab/">Published with MATLAB&reg; R2015b</a><br></p></div><!--
 ##### SOURCE BEGIN #####
 %% Q5
-% Eigenfaces for various k's are as shown below
+% Reconstructed image for various k's are as shown below (image 1)
+% Eigenfaces for first 25 eigenvectors are shown (image 2)
 tic;
 
 image_path = '..\\..\\..\\ORL\\s1\\1.pgm';
