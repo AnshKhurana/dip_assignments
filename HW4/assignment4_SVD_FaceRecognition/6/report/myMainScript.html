@@ -6,7 +6,7 @@
    <!--
 This HTML was auto-generated from MATLAB code.
 To make changes, update the MATLAB code and republish this document.
-      --><title>myMainScript</title><meta name="generator" content="MATLAB 8.6"><link rel="schema.DC" href="http://purl.org/dc/elements/1.1/"><meta name="DC.date" content="2020-11-05"><meta name="DC.source" content="myMainScript.m"><style type="text/css">
+      --><title>myMainScript</title><meta name="generator" content="MATLAB 8.6"><link rel="schema.DC" href="http://purl.org/dc/elements/1.1/"><meta name="DC.date" content="2020-11-06"><meta name="DC.source" content="myMainScript.m"><style type="text/css">
 html,body,div,span,applet,object,iframe,h1,h2,h3,h4,h5,h6,p,blockquote,pre,a,abbr,acronym,address,big,cite,code,del,dfn,em,font,img,ins,kbd,q,s,samp,small,strike,strong,sub,sup,tt,var,b,u,i,center,dl,dt,dd,ol,ul,li,fieldset,form,label,legend,table,caption,tbody,tfoot,thead,tr,th,td{margin:0;padding:0;border:0;outline:0;font-size:100%;vertical-align:baseline;background:transparent}body{line-height:1}ol,ul{list-style:none}blockquote,q{quotes:none}blockquote:before,blockquote:after,q:before,q:after{content:'';content:none}:focus{outine:0}ins{text-decoration:none}del{text-decoration:line-through}table{border-collapse:collapse;border-spacing:0}
 
 html { min-height:100%; margin-bottom:1px; }
@@ -67,19 +67,19 @@ table td { padding:7px 5px; text-align:left; vertical-align:top; border:1px soli
 
 
   </style></head><body><div class="content"><h2>Contents</h2><div><ul><li><a href="#1">MyMainScript</a></li><li><a href="#2">Q6</a></li></ul></div><h2>MyMainScript<a name="1"></a></h2><pre class="codeinput">tic;
-</pre><h2>Q6<a name="2"></a></h2><p>To detect whether an image at test time can be mapped to a person in the train set, we can use the concept of thresholding. We can tune a threshold parameter believing that if the euclidean distance between the eigen coefficients (b/w test image and gallery image) is less than that threshold then the image is of a person seen during training. Otherwise, the decision is - person is not seen during training. Testing on the complete set of 40*4 images, taking k = 175, and tuning threshold to be 3000 (such that proportion of false negatives to actual positives is similar to proportion of false positives to actual negatives), we get the false_positives and false_negatives as below.</p><p>While the threshold value here has been manually tuned, given enough data, data can be partitioned into train, dev and test, instead of just train and test like we are doing now. Threshold can then be finetuned using dev set to minimize a metric on false positives and false negatives. The metric used here, as stated above, brings the fraction of false negatives to actutal positives close to fraction of false positives to total negatives.</p><p>Note: False positives here mean number of images of unseen persons whose eigencoeff distance with images of persons seen during training is less than threshold. False negatives means number of test images of persons seen during training, whose eigencoeff distance with train data was more than threshold.</p><pre class="codeinput">[false_positive,false_negative] = frecog_adv(175,3000)
+</pre><h2>Q6<a name="2"></a></h2><p>To detect whether an image at test time can be mapped to a person in the train set, we can use the concept of thresholding. We can tune a threshold parameter believing that if the euclidean distance between the eigen coefficients (b/w test image and gallery image) is less than that threshold then the image is of a person seen during training. Otherwise, the decision is - person is not seen during training. Testing on the complete set of 32*4 + 8*10 images, taking k = 175, and tuning threshold to be 3000 (such that proportion of false negatives to actual positives is similar to proportion of false positives to actual negatives), we get the false_positives and false_negatives as below.</p><p>While the threshold value here has been manually tuned, given enough data, data can be partitioned into train, dev and test, instead of just train and test like we are doing now. Threshold can then be finetuned using dev set to minimize a metric on false positives and false negatives. The metric used here, as stated above, brings the fraction of false negatives to actutal positives close to fraction of false positives to total negatives.</p><p>Note: False positives here mean number of images of unseen persons whose eigencoeff distance with images of persons seen during training is less than threshold. False negatives means number of test images of persons seen during training, whose eigencoeff distance with train data was more than threshold.</p><pre class="codeinput">[false_positive,false_negative] = frecog_adv(175,3000)
 toc;
 </pre><pre class="codeoutput">
 false_positive =
 
-     6
+    15
 
 
 false_negative =
 
     26
 
-Elapsed time is 1.387540 seconds.
+Elapsed time is 1.599153 seconds.
 </pre><p class="footer"><br><a href="http://www.mathworks.com/products/matlab/">Published with MATLAB&reg; R2015b</a><br></p></div><!--
 ##### SOURCE BEGIN #####
 %% MyMainScript
@@ -91,8 +91,8 @@ tic;
 % threshold parameter believing that if the euclidean distance between the eigen
 % coefficients (b/w test image and gallery image) is less than that threshold then the
 % image is of a person seen during training. Otherwise, the decision is -
-% person is not seen during training. Testing on the complete set of 40*4
-% images, taking k = 175, and tuning threshold to be 3000 (such that
+% person is not seen during training. Testing on the complete set of 32*4 +
+% 8*10 images, taking k = 175, and tuning threshold to be 3000 (such that
 % proportion of false negatives to actual positives is similar to
 % proportion of false positives to actual negatives), we get the
 % false_positives and false_negatives as below.

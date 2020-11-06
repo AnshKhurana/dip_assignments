@@ -7,8 +7,8 @@ tic;
 % threshold parameter believing that if the euclidean distance between the eigen
 % coefficients (b/w test image and gallery image) is less than that threshold then the
 % image is of a person seen during training. Otherwise, the decision is -
-% person is not seen during training. Testing on the complete set of 40*4
-% images, taking k = 175, and tuning threshold to be 3000 (such that
+% person is not seen during training. Testing on the complete set of 32*4 +
+% 8*10 images, taking k = 175, and tuning threshold to be 3000 (such that
 % proportion of false negatives to actual positives is similar to
 % proportion of false positives to actual negatives), we get the
 % false_positives and false_negatives as below.
