@@ -69,7 +69,13 @@ function [ false_positive, false_negative ] = frecog_adv( k, threshold )
         person_folder_path = sprintf(person_folder_format,dataset,person.name);
         person_images = dir(person_folder_path);
         person_images = person_images(3:size(person_images));
-        person_images_test = person_images(num_train_files+1:size(person_images));
+        
+        if person_no <= 32
+            person_images_test = person_images(num_train_files+1:size(person_images));
+        else
+            person_images_test = person_images;
+        end
+        
         for image = person_images_test';
             image_path = sprintf(image_format,dataset,person.name,image.name);
             image_matrix = imread(image_path);
