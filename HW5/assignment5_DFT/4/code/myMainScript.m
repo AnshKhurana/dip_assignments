@@ -39,16 +39,16 @@ for param = [40,80]
         end
         
         figure;
-        imshow(filter_matrix,[]);
+        imshow(filter_matrix,[]); colormap('jet'); colorbar;
         title(sprintf('%s filter (in freq domain) with %s = %d',filter,param_name,param));
         
         figure;
-        imshow(log(1+abs(filter_matrix)),[]);
+        imshow(log(1+abs(filter_matrix)),[]); colormap('jet'); colorbar;
         title(sprintf('%s filter (in freq domain, log-scale) with %s = %d',filter,param_name,param));
         
         filtered_barbara_freq = barbara_freq.*filter_matrix;
         figure;
-        imshow(log(1+abs(filtered_barbara_freq)),[]);
+        imshow(log(1+abs(filtered_barbara_freq)),[]); colormap('jet'); colorbar;
         title(sprintf('%s filtered barbara (in freq domain) with %s = %d',filter,param_name,param));
         
         filtered_barbara_spatial = ifft2(ifftshift(filtered_barbara_freq));
