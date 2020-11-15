@@ -1,0 +1,48 @@
+%% MyMainScript
+
+tic;
+%% Q4
+barbara256 = imread('..\\..\\..\barbara256.png');
+[r, c] = barbara256.shape;
+barabara_freq = fftshift(fft2(barbara256,2*r,2*c));
+
+filters = {'ideal','gaussian'};
+param_names = {'D','sigma'};
+
+imshow(barbara256,[]);
+title('Original barbara');
+
+for param = [40,80]
+    for f = [1,2];
+        filter = filters{f};
+        param_name = param_names{f};
+        filter_matrix = zeros([2*r,2*c]);
+        for i = 1:2*r
+            for j = 1:2*c
+                if strcmp(filter,'ideal');
+                    filter_matrix(i,j) = ((i-r)^2 + (j-c)^2 < param^2);
+                else
+                    filter_matrix(i,j) = exp(-((i-r)^2 + (j-c)^2)/(param^2));
+                end
+            end
+        end
+        
+        figure;
+        imshow(filter_matrix,[]);
+        title(sprintf('%s filter (in freq domain) with %s = %d',filter,param_name,param));
+        
+        filtered_barabara_freq = barbara_freq.*filter_matrix;
+        figure;
+        imshow(log(1+abs(filtered_barbara_freq)),[]);
+        title(sprintf('%s filtered barbara (in freq domain) with %s = %d',filter,param_name,param));
+        
+        filtered_barbara_spatial = ifft2(ifftshift(filtered_barbara_freq));
+        filtered_barabara_spatial = filtered_barabara_spatial(1:r,1:c);
+        
+        imshow(filtered_barbara_spatial,[]);
+        
+            
+                
+                    
+
+toc;
