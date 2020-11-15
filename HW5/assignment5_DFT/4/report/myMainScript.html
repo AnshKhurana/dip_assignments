@@ -86,9 +86,9 @@ title(<span class="string">'Original barbara'</span>);
         <span class="keyword">for</span> i = 1:2*r
             <span class="keyword">for</span> j = 1:2*c
                 <span class="keyword">if</span> strcmp(filter,<span class="string">'ideal'</span>);
-                    filter_matrix(i,j) = ((i-r)^2 + (j-c)^2 &lt; param^2);
+                    filter_matrix(i,j) = ((i-r)^2 + (j-c)^2 &lt;= param^2);
                 <span class="keyword">else</span>
-                    filter_matrix(i,j) = exp(-((i-r)^2 + (j-c)^2)/(param^2));
+                    filter_matrix(i,j) = exp(-((i-r)^2 + (j-c)^2)/(2*param^2));
                 <span class="keyword">end</span>
             <span class="keyword">end</span>
         <span class="keyword">end</span>
@@ -96,6 +96,10 @@ title(<span class="string">'Original barbara'</span>);
         figure;
         imshow(filter_matrix,[]);
         title(sprintf(<span class="string">'%s filter (in freq domain) with %s = %d'</span>,filter,param_name,param));
+
+        figure;
+        imshow(log(1+abs(filter_matrix)),[]);
+        title(sprintf(<span class="string">'%s filter (in freq domain, log-scale) with %s = %d'</span>,filter,param_name,param));
 
         filtered_barbara_freq = barbara_freq.*filter_matrix;
         figure;
@@ -113,12 +117,8 @@ title(<span class="string">'Original barbara'</span>);
 <span class="keyword">end</span>
 
 toc;
-</pre><pre class="codeoutput">Warning: Displaying real part of complex input. 
-Warning: Displaying real part of complex input. 
-Warning: Displaying real part of complex input. 
-Warning: Displaying real part of complex input. 
-Elapsed time is 2.509843 seconds.
-</pre><img vspace="5" hspace="5" src="myMainScript_01.png" style="width:346px;height:277px;" alt=""> <img vspace="5" hspace="5" src="myMainScript_02.png" style="width:550px;height:482px;" alt=""> <img vspace="5" hspace="5" src="myMainScript_03.png" style="width:550px;height:482px;" alt=""> <img vspace="5" hspace="5" src="myMainScript_04.png" style="width:346px;height:277px;" alt=""> <img vspace="5" hspace="5" src="myMainScript_05.png" style="width:550px;height:482px;" alt=""> <img vspace="5" hspace="5" src="myMainScript_06.png" style="width:550px;height:482px;" alt=""> <img vspace="5" hspace="5" src="myMainScript_07.png" style="width:346px;height:277px;" alt=""> <img vspace="5" hspace="5" src="myMainScript_08.png" style="width:550px;height:482px;" alt=""> <img vspace="5" hspace="5" src="myMainScript_09.png" style="width:550px;height:482px;" alt=""> <img vspace="5" hspace="5" src="myMainScript_10.png" style="width:346px;height:277px;" alt=""> <img vspace="5" hspace="5" src="myMainScript_11.png" style="width:550px;height:482px;" alt=""> <img vspace="5" hspace="5" src="myMainScript_12.png" style="width:550px;height:482px;" alt=""> <img vspace="5" hspace="5" src="myMainScript_13.png" style="width:346px;height:277px;" alt=""> <p class="footer"><br><a href="http://www.mathworks.com/products/matlab/">Published with MATLAB&reg; R2015b</a><br></p></div><!--
+</pre><pre class="codeoutput">Elapsed time is 5.255934 seconds.
+</pre><img vspace="5" hspace="5" src="myMainScript_01.png" style="width:346px;height:277px;" alt=""> <img vspace="5" hspace="5" src="myMainScript_02.png" style="width:550px;height:482px;" alt=""> <img vspace="5" hspace="5" src="myMainScript_03.png" style="width:550px;height:482px;" alt=""> <img vspace="5" hspace="5" src="myMainScript_04.png" style="width:550px;height:482px;" alt=""> <img vspace="5" hspace="5" src="myMainScript_05.png" style="width:346px;height:277px;" alt=""> <img vspace="5" hspace="5" src="myMainScript_06.png" style="width:550px;height:482px;" alt=""> <img vspace="5" hspace="5" src="myMainScript_07.png" style="width:550px;height:482px;" alt=""> <img vspace="5" hspace="5" src="myMainScript_08.png" style="width:550px;height:482px;" alt=""> <img vspace="5" hspace="5" src="myMainScript_09.png" style="width:346px;height:277px;" alt=""> <img vspace="5" hspace="5" src="myMainScript_10.png" style="width:550px;height:482px;" alt=""> <img vspace="5" hspace="5" src="myMainScript_11.png" style="width:550px;height:482px;" alt=""> <img vspace="5" hspace="5" src="myMainScript_12.png" style="width:550px;height:482px;" alt=""> <img vspace="5" hspace="5" src="myMainScript_13.png" style="width:346px;height:277px;" alt=""> <img vspace="5" hspace="5" src="myMainScript_14.png" style="width:550px;height:482px;" alt=""> <img vspace="5" hspace="5" src="myMainScript_15.png" style="width:550px;height:482px;" alt=""> <img vspace="5" hspace="5" src="myMainScript_16.png" style="width:550px;height:482px;" alt=""> <img vspace="5" hspace="5" src="myMainScript_17.png" style="width:346px;height:277px;" alt=""> <p class="footer"><br><a href="http://www.mathworks.com/products/matlab/">Published with MATLAB&reg; R2015b</a><br></p></div><!--
 ##### SOURCE BEGIN #####
 %% MyMainScript
 
@@ -153,9 +153,9 @@ for param = [40,80]
         for i = 1:2*r
             for j = 1:2*c
                 if strcmp(filter,'ideal');
-                    filter_matrix(i,j) = ((i-r)^2 + (j-c)^2 < param^2);
+                    filter_matrix(i,j) = ((i-r)^2 + (j-c)^2 <= param^2);
                 else
-                    filter_matrix(i,j) = exp(-((i-r)^2 + (j-c)^2)/(param^2));
+                    filter_matrix(i,j) = exp(-((i-r)^2 + (j-c)^2)/(2*param^2));
                 end
             end
         end
@@ -163,6 +163,10 @@ for param = [40,80]
         figure;
         imshow(filter_matrix,[]);
         title(sprintf('%s filter (in freq domain) with %s = %d',filter,param_name,param));
+        
+        figure;
+        imshow(log(1+abs(filter_matrix)),[]);
+        title(sprintf('%s filter (in freq domain, log-scale) with %s = %d',filter,param_name,param));
         
         filtered_barbara_freq = barbara_freq.*filter_matrix;
         figure;
