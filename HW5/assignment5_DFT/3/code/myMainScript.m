@@ -19,6 +19,8 @@ truesize(figure(1),[400 400])
 title('image with low frequency noise');
 hold off;
 shape = size(img);
+
+%% Computation of DFT
 FA = fftshift(fft2(img, 2*shape(1), 2*shape(2)));
 lFA = log(abs(FA)+1);
 figure(2);
@@ -31,17 +33,18 @@ colormap('jet'); colorbar; title('Log fourier transform with Unnatural Peaks');
 hold off;
 
 
-% Detected peaks using pixel info
+%% Detected peaks using pixel info and verified it by observing values in the matrix.
 Peak1 = [247, 237];
 Peak2 = [267, 277];
-% Parameter for Ideal Notch Filter
-R=6; 
+%% Ideal Notch Filter
+R=8;
 [X, Y] = meshgrid(1:2*shape(1), 1:2*shape(2));
 mask1 = (X - Peak1(1)).^2 ...
     + (Y - Peak1(2)).^2 <= R.^2;
 mask2 = (X - Peak2(1)).^2 ...
     + (Y - Peak2(2)).^2 <= R.^2;
 mask = (1-double(mask1)-double(mask2));
+%% Application of Notch Filter
 figure(3);
 maskedFA = FA .* mask;
 maskedlFA = log(abs(maskedFA)+1);
@@ -52,7 +55,7 @@ colormap('jet'); colorbar; title('FFT after applying Notch Filter');
 colorbar;
 hold off;
 
-%% Inverse FT of Notched FT
+%% IDFT of Notched FT
 denoised_img = ifft2(ifftshift(maskedFA));
 denoised_img = denoised_img(1:256, 1:256);
 figure(4);
@@ -61,7 +64,5 @@ truesize(figure(4),[400 400])
 title('Denoised Image (IFT)');
 hold off;
 toc;
-
-
 
 
