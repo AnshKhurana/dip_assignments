@@ -6,7 +6,7 @@
    <!--
 This HTML was auto-generated from MATLAB code.
 To make changes, update the MATLAB code and republish this document.
-      --><title>myMainScript</title><meta name="generator" content="MATLAB 9.6"><link rel="schema.DC" href="http://purl.org/dc/elements/1.1/"><meta name="DC.date" content="2020-11-14"><meta name="DC.source" content="myMainScript.m"><style type="text/css">
+      --><title>myMainScript</title><meta name="generator" content="MATLAB 9.6"><link rel="schema.DC" href="http://purl.org/dc/elements/1.1/"><meta name="DC.date" content="2020-11-15"><meta name="DC.source" content="myMainScript.m"><style type="text/css">
 html,body,div,span,applet,object,iframe,h1,h2,h3,h4,h5,h6,p,blockquote,pre,a,abbr,acronym,address,big,cite,code,del,dfn,em,font,img,ins,kbd,q,s,samp,small,strike,strong,sub,sup,tt,var,b,u,i,center,dl,dt,dd,ol,ul,li,fieldset,form,label,legend,table,caption,tbody,tfoot,thead,tr,th,td{margin:0;padding:0;border:0;outline:0;font-size:100%;vertical-align:baseline;background:transparent}body{line-height:1}ol,ul{list-style:none}blockquote,q{quotes:none}blockquote:before,blockquote:after,q:before,q:after{content:'';content:none}:focus{outine:0}ins{text-decoration:none}del{text-decoration:line-through}table{border-collapse:collapse;border-spacing:0}
 
 html { min-height:100%; margin-bottom:1px; }
@@ -66,7 +66,7 @@ table td { padding:7px 5px; text-align:left; vertical-align:top; border:1px soli
 
 
 
-  </style></head><body><div class="content"><h2>Contents</h2><div><ul><li><a href="#1">MyMainScript</a></li><li><a href="#2">CS 663: Digital Image Processing, IIT Bombay (Autumn 2020)</a></li><li><a href="#3">Q3: Notch Filter to remove interference</a></li><li><a href="#4">Inverse FT of Notched FT</a></li></ul></div><h2 id="1">MyMainScript</h2><pre class="codeinput">clc; clear <span class="string">all</span>; close <span class="string">all</span>;
+  </style></head><body><div class="content"><h2>Contents</h2><div><ul><li><a href="#1">MyMainScript</a></li><li><a href="#2">CS 663: Digital Image Processing, IIT Bombay (Autumn 2020)</a></li><li><a href="#3">Q3: Notch Filter to remove interference</a></li><li><a href="#4">Computation of DFT</a></li><li><a href="#5">Detected peaks using pixel info and verified it by observing values in the matrix.</a></li><li><a href="#6">Ideal Notch Filter</a></li><li><a href="#7">Application of Notch Filter</a></li><li><a href="#8">IDFT of Notched FT</a></li></ul></div><h2 id="1">MyMainScript</h2><pre class="codeinput">clc; clear <span class="string">all</span>; close <span class="string">all</span>;
 warning(<span class="string">'off'</span>, <span class="string">'all'</span>);
 tic;
 </pre><h2 id="2">CS 663: Digital Image Processing, IIT Bombay (Autumn 2020)</h2><pre>Aman Kansal, Ansh Khurana, Kushagra Juneja</pre><p>Assignment 5</p><h2 id="3">Q3: Notch Filter to remove interference</h2><p>Implementation of the necessary functionalities can be found in the</p><pre class="codeinput">img = load(<span class="string">'../data/image_low_frequency_noise.mat'</span>);
@@ -77,7 +77,7 @@ truesize(figure(1),[400 400])
 title(<span class="string">'image with low frequency noise'</span>);
 hold <span class="string">off</span>;
 shape = size(img);
-FA = fftshift(fft2(img, 2*shape(1), 2*shape(2)));
+</pre><img vspace="5" hspace="5" src="myMainScript_01.png" alt=""> <h2 id="4">Computation of DFT</h2><pre class="codeinput">FA = fftshift(fft2(img, 2*shape(1), 2*shape(2)));
 lFA = log(abs(FA)+1);
 figure(2);
 imshow(lFA,[min(lFA(:)) max(lFA(:))]);
@@ -87,20 +87,16 @@ imshow(lFA,[min(lFA(:)) max(lFA(:))]);
 truesize(figure(2),[400 400])
 colormap(<span class="string">'jet'</span>); colorbar; title(<span class="string">'Log fourier transform with Unnatural Peaks'</span>);
 hold <span class="string">off</span>;
-
-
-<span class="comment">% Detected peaks using pixel info</span>
-Peak1 = [247, 237];
+</pre><img vspace="5" hspace="5" src="myMainScript_02.png" alt=""> <h2 id="5">Detected peaks using pixel info and verified it by observing values in the matrix.</h2><pre class="codeinput">Peak1 = [247, 237];
 Peak2 = [267, 277];
-<span class="comment">% Parameter for Ideal Notch Filter</span>
-R=6;
+</pre><h2 id="6">Ideal Notch Filter</h2><pre class="codeinput">R=8;
 [X, Y] = meshgrid(1:2*shape(1), 1:2*shape(2));
 mask1 = (X - Peak1(1)).^2 <span class="keyword">...</span>
     + (Y - Peak1(2)).^2 &lt;= R.^2;
 mask2 = (X - Peak2(1)).^2 <span class="keyword">...</span>
     + (Y - Peak2(2)).^2 &lt;= R.^2;
 mask = (1-double(mask1)-double(mask2));
-figure(3);
+</pre><h2 id="7">Application of Notch Filter</h2><pre class="codeinput">figure(3);
 maskedFA = FA .* mask;
 maskedlFA = log(abs(maskedFA)+1);
 <span class="comment">% imshow();</span>
@@ -109,7 +105,7 @@ truesize(figure(3),[400 400])
 colormap(<span class="string">'jet'</span>); colorbar; title(<span class="string">'FFT after applying Notch Filter'</span>);
 colorbar;
 hold <span class="string">off</span>;
-</pre><img vspace="5" hspace="5" src="myMainScript_01.png" alt=""> <img vspace="5" hspace="5" src="myMainScript_02.png" alt=""> <img vspace="5" hspace="5" src="myMainScript_03.png" alt=""> <h2 id="4">Inverse FT of Notched FT</h2><pre class="codeinput">denoised_img = ifft2(ifftshift(maskedFA));
+</pre><img vspace="5" hspace="5" src="myMainScript_03.png" alt=""> <h2 id="8">IDFT of Notched FT</h2><pre class="codeinput">denoised_img = ifft2(ifftshift(maskedFA));
 denoised_img = denoised_img(1:256, 1:256);
 figure(4);
 imshow(denoised_img, [min(denoised_img(:)) max(denoised_img(:))]);
@@ -117,7 +113,7 @@ truesize(figure(4),[400 400])
 title(<span class="string">'Denoised Image (IFT)'</span>);
 hold <span class="string">off</span>;
 toc;
-</pre><pre class="codeoutput">Elapsed time is 4.040102 seconds.
+</pre><pre class="codeoutput">Elapsed time is 3.181741 seconds.
 </pre><img vspace="5" hspace="5" src="myMainScript_04.png" alt=""> <p class="footer"><br><a href="https://www.mathworks.com/products/matlab/">Published with MATLAB&reg; R2019a</a><br></p></div><!--
 ##### SOURCE BEGIN #####
 %% MyMainScript
@@ -141,6 +137,8 @@ truesize(figure(1),[400 400])
 title('image with low frequency noise');
 hold off;
 shape = size(img);
+
+%% Computation of DFT
 FA = fftshift(fft2(img, 2*shape(1), 2*shape(2)));
 lFA = log(abs(FA)+1);
 figure(2);
@@ -153,17 +151,18 @@ colormap('jet'); colorbar; title('Log fourier transform with Unnatural Peaks');
 hold off;
 
 
-% Detected peaks using pixel info
+%% Detected peaks using pixel info and verified it by observing values in the matrix.
 Peak1 = [247, 237];
 Peak2 = [267, 277];
-% Parameter for Ideal Notch Filter
-R=6; 
+%% Ideal Notch Filter
+R=8;
 [X, Y] = meshgrid(1:2*shape(1), 1:2*shape(2));
 mask1 = (X - Peak1(1)).^2 ...
     + (Y - Peak1(2)).^2 <= R.^2;
 mask2 = (X - Peak2(1)).^2 ...
     + (Y - Peak2(2)).^2 <= R.^2;
 mask = (1-double(mask1)-double(mask2));
+%% Application of Notch Filter
 figure(3);
 maskedFA = FA .* mask;
 maskedlFA = log(abs(maskedFA)+1);
@@ -174,7 +173,7 @@ colormap('jet'); colorbar; title('FFT after applying Notch Filter');
 colorbar;
 hold off;
 
-%% Inverse FT of Notched FT
+%% IDFT of Notched FT
 denoised_img = ifft2(ifftshift(maskedFA));
 denoised_img = denoised_img(1:256, 1:256);
 figure(4);
@@ -183,8 +182,6 @@ truesize(figure(4),[400 400])
 title('Denoised Image (IFT)');
 hold off;
 toc;
-
-
 
 
 
